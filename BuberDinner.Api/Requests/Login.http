@@ -1,0 +1,9 @@
+@host = https://localhost:7041
+
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@buber.com",
+  "password": "password"
+}
