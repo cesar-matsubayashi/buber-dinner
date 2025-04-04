@@ -26,6 +26,7 @@ namespace BuberDinner.Application.Authentication.Commands.Register
             RegisterCommand command,
             CancellationToken cancellationToken)
         {
+            await Task.CompletedTask;
 
             if (_userRepository.GetUserByEmail(command.Email) is not null)
             {

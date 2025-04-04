@@ -27,6 +27,8 @@ namespace BuberDinner.Application.Authentication.Commands.Login
             LoginQuery query,
             CancellationToken cancellationToken)
         {
+            await Task.CompletedTask;
+
             if (_userRepository.GetUserByEmail(query.Email) is not User user)
             {
                 return Errors.Authentication.InvalidCredentials;
