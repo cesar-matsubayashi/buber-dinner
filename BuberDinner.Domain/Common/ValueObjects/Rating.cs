@@ -4,15 +4,15 @@ namespace BuberDinner.Domain.Common.ValueObjects
 {
     public sealed class Rating : ValueObject
     {
-        public double Value { get; private set; }
+        public float Value { get; private set; }
 
-        private Rating(double value)
+        private Rating(float value)
         {
             Value = value;
         }
 
         public static Rating CreateNew(
-            double value = 0)
+            float value = 0)
         {
             return new Rating(value);
         }

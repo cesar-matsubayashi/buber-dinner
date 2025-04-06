@@ -33,13 +33,21 @@ namespace BuberDinner.Application.Authentication.Commands.Register
                 return Errors.User.DuplicateEmail;
             }
 
-            var user = User.Create
-            (
-                command.FirstName,
-                command.LastName,
-                command.Email,
-                command.Password
-            );
+            //var user = User.Create
+            //(
+            //    command.FirstName,
+            //    command.LastName,
+            //    command.Email,
+            //    command.Password
+            //);
+
+            var user = new User
+            {
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+                Email = command.Email,
+                Password = command.Password
+            };
 
             _userRepository.Add(user);
 
