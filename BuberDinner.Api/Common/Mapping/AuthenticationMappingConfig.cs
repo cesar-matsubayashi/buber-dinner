@@ -15,6 +15,7 @@ namespace BuberDinner.Api.Common.Mapping
             config.NewConfig<LoginRequest, LoginQuery>();
 
             config.NewConfig<AuthenticationResult, AuthenticationResponse>()
+                .Map(dest => dest.Id, src => src.User.Id.Value)
                 .Map(des => des, src => src.User);
         }
     }
