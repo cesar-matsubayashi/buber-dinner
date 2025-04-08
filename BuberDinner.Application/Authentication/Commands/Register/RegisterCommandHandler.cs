@@ -41,14 +41,6 @@ namespace BuberDinner.Application.Authentication.Commands.Register
                 command.Password
             );
 
-            //var user = new User
-            //{
-            //    FirstName = command.FirstName,
-            //    LastName = command.LastName,
-            //    Email = command.Email,
-            //    Password = command.Password
-            //};
-
             _userRepository.Add(user);
 
             var token = _jwtTokenGenerator.GenerateToken(user);

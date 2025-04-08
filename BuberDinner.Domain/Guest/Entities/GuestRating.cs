@@ -6,7 +6,7 @@ using BuberDinner.Domain.Host.ValueObjects;
 
 namespace BuberDinner.Domain.Guest.Entities
 {
-    public class GuestRating : AggregateRoot<GuestRatingId>
+    public class GuestRating : AggregateRoot<GuestRatingId, Guid>
     {
         public HostId HostId { get; }
         public DinnerId DinnerId { get; }

@@ -3,7 +3,7 @@ using BuberDinner.Domain.User.ValueObjects;
 
 namespace BuberDinner.Domain.Entities
 {
-    public sealed class User : AggregateRoot<UserId>
+    public sealed class User : AggregateRoot<UserId, Guid>
     {
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
