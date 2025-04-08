@@ -5,8 +5,8 @@ namespace BuberDinner.Domain.Menu.Entities
 {
     public sealed class MenuItem : AggregateRoot<MenuItemId>
     {
-        public string Name { get; }
-        public string Description { get; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
         
         public MenuItem(MenuItemId menuItemId, string name, string description) 
             : base(menuItemId)
@@ -19,5 +19,9 @@ namespace BuberDinner.Domain.Menu.Entities
         {
             return new(MenuItemId.CreateUnique(), name, description);
         }
+
+#pragma warning disable CS8618
+        private MenuItem() { }
+#pragma warning disable CS8618
     }
 }

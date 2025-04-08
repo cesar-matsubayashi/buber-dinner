@@ -1,6 +1,6 @@
 @host = https://localhost:7041
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NTA2OGQ3My1lYjIzLTRmZWQtOTFkNC04NGJiZTIzN2ZlODYiLCJnaXZlbl9uYW1lIjoiQ2VzYXIiLCJmYW1pbHlfbmFtZSI6Ik1hdHN1YmF5YXNoaSIsImp0aSI6ImQxMDRlZTI5LTg5ZjctNGZkNy1hMTZjLTQ3ODFhZWI5Y2Y5ZiIsImV4cCI6MTc0NDU1MDY0MywiaXNzIjoiQnViZXJEaW5uZXIiLCJhdWQiOiJCdWJlckRpbm5lciJ9.LBQ9TRQ_YHooIVUG-_m4FqvOWQRM7UJBX5f9p_vgIE8
-@hostId = alsdkjfasdf
+@hostId = 04f26bed-83e4-442f-8166-7aa843d31b9c
 
 POST {{host}}/hosts/{{hostId}}/menus
 Content-Type: application/json

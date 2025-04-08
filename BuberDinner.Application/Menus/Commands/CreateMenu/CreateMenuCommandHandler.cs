@@ -23,7 +23,7 @@ namespace BuberDinner.Application.Menus.Commands.CreateMenu
             await Task.CompletedTask;
 
             var menu = Menu.Create(
-                HostId.Create(request.HostId),
+                HostId.Create(Guid.Parse(request.HostId)),
                 request.Name,
                 request.Description,
                 request.Sections.ConvertAll(
