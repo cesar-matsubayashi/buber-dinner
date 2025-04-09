@@ -12,6 +12,7 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using BuberDinner.Infrastructure.Persistence.Repositories;
+using BuberDinner.Infrastructure.Persistence.Interceptors;
 
 namespace BuberDinner.Infrastructure
 {
@@ -35,6 +36,7 @@ namespace BuberDinner.Infrastructure
         {
             services.AddDbContext<BuberDinnerDbContext>(options =>
                 options.UseSqlServer("Server=localhost;Database=BuberDinner;User Id=SA;Password=headpiece6-linguist-oozy;TrustServerCertificate=true"));
+            services.AddScoped<PublishDomainEventsInterceptor>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
 
