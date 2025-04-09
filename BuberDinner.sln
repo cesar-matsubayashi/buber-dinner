@@ -26,6 +26,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Application", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Domain", "BuberDinner.Domain\BuberDinner.Domain.csproj", "{E21CC08A-EF4F-4C8E-A60E-545D4DAF56CB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7AEC9AFE-AC8F-4627-8A63-84FDC5596440}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Application.UnitTests", "BuberDinner.Application.UnitTests\BuberDinner.Application.UnitTests.csproj", "{DAD9952A-82B2-435F-AD08-3ECAD841AA72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +56,10 @@ Global
 		{E21CC08A-EF4F-4C8E-A60E-545D4DAF56CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E21CC08A-EF4F-4C8E-A60E-545D4DAF56CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E21CC08A-EF4F-4C8E-A60E-545D4DAF56CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAD9952A-82B2-435F-AD08-3ECAD841AA72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAD9952A-82B2-435F-AD08-3ECAD841AA72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAD9952A-82B2-435F-AD08-3ECAD841AA72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAD9952A-82B2-435F-AD08-3ECAD841AA72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +70,7 @@ Global
 		{E62FD3D3-5A4F-4586-8DCC-443A7068E16E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{C8A777B6-A7F0-417B-94FC-249775BDFE5B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{E21CC08A-EF4F-4C8E-A60E-545D4DAF56CB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{DAD9952A-82B2-435F-AD08-3ECAD841AA72} = {7AEC9AFE-AC8F-4627-8A63-84FDC5596440}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {63AFA606-7241-454B-A514-5BC5C6E0AA01}

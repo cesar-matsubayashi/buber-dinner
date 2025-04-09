@@ -20,10 +20,8 @@ namespace BuberDinner.Application.Menus.Commands.CreateMenu
             CreateMenuCommand request, 
             CancellationToken cancellationToken)
         {
-            await Task.CompletedTask;
-
             var menu = Menu.Create(
-                HostId.Create(Guid.Parse(request.HostId)),
+                HostId.Create(request.HostId),
                 request.Name,
                 request.Description,
                 request.Sections.ConvertAll(
@@ -34,7 +32,7 @@ namespace BuberDinner.Application.Menus.Commands.CreateMenu
                             item.Name,
                             item.Description)))));
 
-            _menuRepository.Add(menu);
+            await _menuRepository.AddAsync(menu);
 
             return menu;
         }

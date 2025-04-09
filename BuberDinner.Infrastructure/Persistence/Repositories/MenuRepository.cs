@@ -12,10 +12,10 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public void Add(Menu menu)
+        public async Task AddAsync(Menu menu)
         {
-            _dbContext.Add(menu);
-            _dbContext.SaveChanges();
+            await _dbContext.AddAsync(menu);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
