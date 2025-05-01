@@ -5,7 +5,7 @@ using BuberDinner.Domain.Guest.ValueObjects;
 
 namespace BuberDinner.Domain.Dinner.Entities
 {
-    public sealed class Reservation : AggregateRoot<ReservationId, Guid>
+    public sealed class Reservation : AggregateRoot<ReservationId>
     {
         public int GuestCount { get; }
         public ReservationStatus ReservationStatus { get; }

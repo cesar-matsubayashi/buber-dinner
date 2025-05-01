@@ -7,7 +7,7 @@ using BuberDinner.Domain.Menu.ValueObjects;
 
 namespace BuberDinner.Domain.Dinner
 {
-    public sealed class Dinner : AggregateRoot<DinnerId, Guid>
+    public sealed class Dinner : AggregateRoot<DinnerId>
     {
         private readonly List<ReservationId> _reservationIds = new();
 

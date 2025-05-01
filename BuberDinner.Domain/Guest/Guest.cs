@@ -9,7 +9,7 @@ using BuberDinner.Domain.User.ValueObjects;
 
 namespace BuberDinner.Domain.Guest
 {
-    public sealed class Guest : AggregateRoot<GuestId, Guid>
+    public sealed class Guest : AggregateRoot<GuestId>
     {
         private readonly List<DinnerId> _upcomingDinnerIds = new();
         private readonly List<DinnerId> _pastDinnerIds = new();

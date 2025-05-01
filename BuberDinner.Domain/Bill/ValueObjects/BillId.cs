@@ -2,9 +2,9 @@
 
 namespace BuberDinner.Domain.Bill.ValueObjects
 {
-    public sealed class BillId : AggregateRootId<Guid>
+    public sealed class BillId : ValueObject
     {
-        public override Guid Value { get; protected set; }
+        public Guid Value { get; }
 
         private BillId(Guid value)
         {

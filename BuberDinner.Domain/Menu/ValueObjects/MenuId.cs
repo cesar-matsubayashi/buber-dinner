@@ -2,23 +2,23 @@
 
 namespace BuberDinner.Domain.Menu.ValueObjects
 {
-    public sealed class MenuId : AggregateRootId<Guid>
+    public sealed class MenuSectionId : ValueObject
     {
-        public override Guid Value { get; protected set; }
+        public Guid Value { get; }
 
-        private MenuId(Guid value) 
+        private MenuSectionId(Guid value) 
         { 
             Value = value;
         }
 
-        public static MenuId CreateUnique()
+        public static MenuSectionId CreateUnique()
         {
             return new(Guid.NewGuid());  
         }
 
-        public static MenuId Create(Guid value)
+        public static MenuSectionId Create(Guid value)
         {
-            return new MenuId(value);
+            return new MenuSectionId(value);
         }
 
         public override IEnumerable<object> GetEqualityComponents()
