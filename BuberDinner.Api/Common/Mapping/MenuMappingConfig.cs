@@ -30,6 +30,9 @@ namespace BuberDinner.Api.Common.Mapping
             config.NewConfig<MenuItem, MenuItemResponse>()
                 .Map(dest => dest.Id, src => src.Id.Value.ToString());
 
+            config.NewConfig<Guid, GetMenuQuery>()
+                .MapWith(id => new GetMenuQuery(MenuId.Create(id)));
+
         }
     }
 }

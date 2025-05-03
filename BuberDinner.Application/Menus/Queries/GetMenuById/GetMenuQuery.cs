@@ -5,5 +5,5 @@ using MediatR;
 
 namespace BuberDinner.Application.Menus.Queries.GetMenuById
 {
-    public record GetMenuQuery(MenuId MenuId) : IRequest<ErrorOr<Menu>>; 
+    public record GetMenuQuery(MenuId Id) : IRequest<ErrorOr<Menu>>; 
 }

@@ -37,7 +37,7 @@ namespace BuberDinner.Api.Controllers
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetMenuById(Guid id)
         {
-            var query = new GetMenuQuery(MenuId.Create(id));
+            var query = _mapper.Map<GetMenuQuery>(id);
             var getMenuResult = await _mediator.Send(query);
 
             return getMenuResult.Match(

@@ -6,7 +6,7 @@ namespace BuberDinner.Application.Menus.Queries.GetMenuById
     {
         public GetMenuQueryValidator()
         {
-            RuleFor(m => m.MenuId).NotEmpty();
+            RuleFor(m => m.Id).NotEmpty();
         }
     }
 }

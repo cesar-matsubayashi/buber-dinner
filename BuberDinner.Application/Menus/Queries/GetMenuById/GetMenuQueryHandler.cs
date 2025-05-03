@@ -20,7 +20,7 @@ namespace BuberDinner.Application.Menus.Queries.GetMenuById
             GetMenuQuery request, 
             CancellationToken cancellationToken)
         {
-            var menu = await _menuRepository.GetAsync(request.MenuId);
+            var menu = await _menuRepository.GetAsync(request.Id);
 
             if (menu is null)
             {
