@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Common.Interfaces.Persistence;
+using BuberDinner.Domain.Common.Errors;
 using BuberDinner.Domain.Menu;
 using ErrorOr;
 using MediatR;
@@ -20,6 +21,11 @@ namespace BuberDinner.Application.Menus.Queries.GetMenuById
             CancellationToken cancellationToken)
         {
             var menu = await _menuRepository.GetAsync(request.MenuId);
+
+            if (menu is null)
+            {
+                return Errors.Menu.NotFound;
+            }
 
             return menu;
         }
