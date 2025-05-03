@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Common.Interfaces.Persistence;
+using BuberDinner.Domain.Host.ValueObjects;
 using BuberDinner.Domain.Menu;
 using BuberDinner.Domain.Menu.ValueObjects;
 using ErrorOr;
@@ -21,14 +22,22 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(MenuId id)
+        public async Task DeleteAsync(MenuId id)
         {
-            throw new NotImplementedException();
+            var menu = await _dbContext.Set<Menu>().FindAsync(id);
+
+            if (menu is not null)
+            {
+                _dbContext.Remove(menu);
+                await _dbContext.SaveChangesAsync();
+            }
         }
 
-        public Task<List<Menu>> FindAllAsync()
+        public async Task<List<Menu>> FindAllAsync(HostId hostId)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Set<Menu>()
+                .Where(m =>  m.HostId == hostId)
+                .ToListAsync();
         }
 
         public async Task<Menu?> GetAsync(MenuId id)
@@ -36,9 +45,10 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
             return await _dbContext.Set<Menu>().FindAsync(id);
         }
 
-        public Task UpdateAsync(Menu menu)
+        public async Task UpdateAsync(Menu menu)
         {
-            throw new NotImplementedException();
+            _dbContext.Update(menu);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

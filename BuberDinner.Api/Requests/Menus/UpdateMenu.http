@@ -1,22 +1,24 @@
 @host = https://localhost:7041
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCdWJlckRpbm5lci5Eb21haW4uVXNlci5WYWx1ZU9iamVjdHMuVXNlcklkIiwiZ2l2ZW5fbmFtZSI6IkNlc2FyIiwiZmFtaWx5X25hbWUiOiJNYXRzdWJheWFzaGkiLCJqdGkiOiJmZTFmM2Q1Ni02MTUxLTQ3MGEtOTI0MS1kNjk5MjhlZDhlYmEiLCJleHAiOjE3NDY3MTAyMjMsImlzcyI6IkJ1YmVyRGlubmVyIiwiYXVkIjoiQnViZXJEaW5uZXIifQ.FIV33naxD98VB_MFwMVFDDWv93ONC2vnZQUAhkTNhao
 @hostId = 2bf01bdd-72bc-41f6-aaa2-7321cf5c887d
+@menuId = 2c810592-9ca2-4d19-ba45-a3c2099554c8
 
-POST {{host}}/hosts/{{hostId}}/menus
+PUT {{host}}/hosts/{{hostId}}/menus/{{menuId}}
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "name": "Yummy",
-    "description": "Yummy food",
+
+    "name": "Yummy Updated",
+    "description": "Yummy food Updated",
     "sections": [
         {
-            "name": "Appetizers",
-            "description": "Starters",
+            "name": "Appetizers Updated",
+            "description": "Starters Updated",
             "items": [
                 {
-                    "name": "French Fries",
-                    "description": "Deep fried potato strips"
+                    "name": "French Fries Updated",
+                    "description": "Deep fried potato strips updated"
                 }
             ]
         }

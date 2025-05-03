@@ -1,6 +1,10 @@
 ﻿using BuberDinner.Application.Menus.Commands.CreateMenu;
+using BuberDinner.Application.Menus.Commands.DeleteMenu;
+using BuberDinner.Application.Menus.Commands.UpdateMenu;
 using BuberDinner.Application.Menus.Queries.GetMenuById;
+using BuberDinner.Application.Menus.Queries.List;
 using BuberDinner.Contracts.Menus;
+using BuberDinner.Domain.Host.ValueObjects;
 using BuberDinner.Domain.Menu.ValueObjects;
 using MapsterMapper;
 using MediatR;
@@ -42,6 +46,41 @@ namespace BuberDinner.Api.Controllers
 
             return getMenuResult.Match(
                 menu => Ok(_mapper.Map<MenuResponse>(menu)),
+                errors => Problem(errors));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ListMenus(Guid hostId)
+        {
+            var query = _mapper.Map<ListMenuQuery>(hostId);
+            var getMenuResult = await _mediator.Send(query);
+
+            return getMenuResult.Match(
+                menu => Ok(_mapper.Map<List<MenuResponse>>(menu)),
+                errors => Problem(errors));
+        }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UpdateMenu(
+            UpdateMenuRequest request,
+            Guid id)
+        {
+            var command = _mapper.Map<UpdateMenuCommand>((request, id));
+            var updateMenuResult = await _mediator.Send(command);
+
+            return updateMenuResult.Match(
+                menu => Ok(_mapper.Map<MenuResponse>(menu)),
+                errors => Problem(errors));
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteMenu(Guid id)
+        {
+            var command = _mapper.Map<DeleteMenuCommand>(id);
+            var deleteMenuResult = await _mediator.Send(command);
+
+            return deleteMenuResult.Match(
+                _ => NoContent(),
                 errors => Problem(errors));
         }
     }

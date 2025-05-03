@@ -63,6 +63,22 @@ namespace BuberDinner.Domain.Menu
             return menu;
         }
 
+        public void Update(
+            string name,
+            string description,
+            List<MenuSection>? sections)
+        {
+            Name = name;
+            Description = description;
+            
+            _sections.Clear();
+            _sections.AddRange(sections);
+
+            UpdatedDateTime = DateTime.UtcNow;
+
+            this.AddDomainEvent(new MenuUpdated(this));
+        }
+
 #pragma warning disable CS8618 
         private Menu() { }
 #pragma warning restore CS8618 
