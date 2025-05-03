@@ -1,5 +1,7 @@
 ﻿using BuberDinner.Application.Menus.Commands.CreateMenu;
+using BuberDinner.Application.Menus.Queries.GetMenuById;
 using BuberDinner.Contracts.Menus;
+using BuberDinner.Domain.Menu.ValueObjects;
 using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +30,17 @@ namespace BuberDinner.Api.Controllers
             var createMenuResult = await _mediator.Send(command);
 
             return createMenuResult.Match(
+                menu => Ok(_mapper.Map<MenuResponse>(menu)),
+                errors => Problem(errors));
+        }
+
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetMenuById(Guid id)
+        {
+            var query = new GetMenuQuery(MenuId.Create(id));
+            var getMenuResult = await _mediator.Send(query);
+
+            return getMenuResult.Match(
                 menu => Ok(_mapper.Map<MenuResponse>(menu)),
                 errors => Problem(errors));
         }
