@@ -1,6 +1,6 @@
 ﻿using BuberDinner.Application.Common.Interfaces.Persistence;
 using BuberDinner.Application.Menus.Commands.CreateMenu;
-using BuberDinner.Application.UnitTests.Menus.Commands.TestUtils;
+using BuberDinner.Application.UnitTests.Menus.TestUtils;
 using BuberDinner.Application.UnitTests.TestUtils.Menus.Extensions;
 using FluentAssertions;
 using Moq;

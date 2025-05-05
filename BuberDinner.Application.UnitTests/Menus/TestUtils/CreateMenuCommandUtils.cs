@@ -1,7 +1,7 @@
 ﻿using BuberDinner.Application.Menus.Commands.CreateMenu;
 using BuberDinner.Application.UnitTests.TestUtils.Constants;
 
-namespace BuberDinner.Application.UnitTests.Menus.Commands.TestUtils
+namespace BuberDinner.Application.UnitTests.Menus.TestUtils
 {
     public static class CreateMenuCommandUtils
     {
