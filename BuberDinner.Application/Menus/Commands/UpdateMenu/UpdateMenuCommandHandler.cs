@@ -2,7 +2,6 @@
 using BuberDinner.Domain.Common.Errors;
 using BuberDinner.Domain.Menu;
 using BuberDinner.Domain.Menu.Entities;
-using BuberDinner.Domain.Menu.ValueObjects;
 using ErrorOr;
 using MediatR;
 
@@ -22,7 +21,7 @@ namespace BuberDinner.Application.Menus.Commands.UpdateMenu
             UpdateMenuCommand request, 
             CancellationToken cancellationToken)
         {
-            var menu = await _menuRepository.GetAsync(MenuId.Create(request.id));
+            var menu = await _menuRepository.GetAsync(request.Id);
 
             if (menu is null)
             {

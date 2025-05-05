@@ -40,7 +40,7 @@ namespace BuberDinner.Api.Common.Mapping
                 .MapWith(id => new GetMenuQuery(MenuId.Create(id)));
 
             config.NewConfig<(UpdateMenuRequest Request, Guid Id), UpdateMenuCommand>()
-                .Map(dest => dest.id, src => src.Id)
+                .Map(dest => dest.Id, src => src.Id)
                 .Map(dest => dest, src => src.Request);
 
             config.NewConfig<Guid, DeleteMenuCommand>()
