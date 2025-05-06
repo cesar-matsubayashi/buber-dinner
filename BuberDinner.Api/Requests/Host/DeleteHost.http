@@ -1,0 +1,7 @@
+@host = https://localhost:7041
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCdWJlckRpbm5lci5Eb21haW4uVXNlci5WYWx1ZU9iamVjdHMuVXNlcklkIiwiZ2l2ZW5fbmFtZSI6IkNlc2FyIiwiZmFtaWx5X25hbWUiOiJNYXRzdWJheWFzaGkiLCJqdGkiOiJmZTFmM2Q1Ni02MTUxLTQ3MGEtOTI0MS1kNjk5MjhlZDhlYmEiLCJleHAiOjE3NDY3MTAyMjMsImlzcyI6IkJ1YmVyRGlubmVyIiwiYXVkIjoiQnViZXJEaW5uZXIifQ.FIV33naxD98VB_MFwMVFDDWv93ONC2vnZQUAhkTNhao
+@hostId = a0cd291b-263b-4b3d-834d-9b3e2d850e9e
+
+DELETE {{host}}/hosts/{{hostId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}

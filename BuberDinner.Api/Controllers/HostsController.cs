@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Hosts.Commands.CreateHost;
+using BuberDinner.Application.Hosts.Commands.DeleteHost;
 using BuberDinner.Application.Hosts.Queries.GetHost;
 using BuberDinner.Contracts.Hosts;
 using MapsterMapper;
@@ -39,6 +40,17 @@ namespace BuberDinner.Api.Controllers
 
             return getHostResult.Match(
                 host => Ok(_mapper.Map<HostResponse>(host)),
+                errors => Problem(errors));
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteHost(Guid id)
+        {
+            var command = _mapper.Map<DeleteHostCommand>(id);
+            var deleteHostResult = await _mediator.Send(command);
+
+            return deleteHostResult.Match(
+                _ => NoContent(),
                 errors => Problem(errors));
         }
     }

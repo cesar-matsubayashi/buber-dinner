@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Hosts.Commands.CreateHost;
+using BuberDinner.Application.Hosts.Commands.DeleteHost;
 using BuberDinner.Application.Hosts.Queries.GetHost;
 using BuberDinner.Contracts.Hosts;
 using BuberDinner.Domain.Host.ValueObjects;
@@ -27,6 +28,9 @@ namespace BuberDinner.Api.Common.Mapping
                     src => src.DinnerIds.Select(dinnerId => dinnerId.Value));
 
             config.NewConfig<Guid, GetHostQuery>()
+                .Map(dest => dest.Id, src => HostId.Create(src));
+
+            config.NewConfig<Guid, DeleteHostCommand>()
                 .Map(dest => dest.Id, src => HostId.Create(src));
         } 
     }
