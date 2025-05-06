@@ -2,8 +2,12 @@
 using BuberDinner.Domain.Common.ValueObjects;
 using BuberDinner.Domain.Dinner.ValueObjects;
 using BuberDinner.Domain.Host.ValueObjects;
+using BuberDinner.Domain.Menu.Entities;
+using BuberDinner.Domain.Menu.Events;
 using BuberDinner.Domain.Menu.ValueObjects;
 using BuberDinner.Domain.User.ValueObjects;
+using static System.Collections.Specialized.BitVector32;
+using System.Xml.Linq;
 
 namespace BuberDinner.Domain.Host
 {
@@ -11,15 +15,15 @@ namespace BuberDinner.Domain.Host
     {
         private readonly List<MenuId> _menuIds = new();
         private readonly List<DinnerId> _dinnerIds = new();
-        public string FirstName { get; }
-        public string LastName { get; }
-        public string ProfileImage { get; }
-        public AverageRating AverageRating { get; }
-        public UserId UserId { get; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        public string ProfileImage { get; private set; }
+        public AverageRating AverageRating { get; private set; }
+        public UserId UserId { get; private set; }
         public IReadOnlyList<MenuId> MenuIds => _menuIds.AsReadOnly();
         public IReadOnlyList<DinnerId> DinnerIds => _dinnerIds.AsReadOnly();
-        public DateTime CreatedDateTime { get; }
-        public DateTime UpdatedDateTime { get; }
+        public DateTime CreatedDateTime { get; private set; }
+        public DateTime UpdatedDateTime { get; private set; }
 
         public Host(
             HostId hostId,
@@ -27,6 +31,7 @@ namespace BuberDinner.Domain.Host
             string lastName, 
             string profileImage, 
             UserId userId, 
+            AverageRating averageRating,
             DateTime createdDateTime, 
             DateTime updatedDateTime)
             : base (hostId)
@@ -35,6 +40,7 @@ namespace BuberDinner.Domain.Host
             LastName = lastName;
             ProfileImage = profileImage;
             UserId = userId;
+            AverageRating = averageRating;
             CreatedDateTime = createdDateTime;
             UpdatedDateTime = updatedDateTime;
         }
@@ -51,8 +57,20 @@ namespace BuberDinner.Domain.Host
                 lastName,
                 profileImage,
                 userId,
+                AverageRating.CreateNew(),
                 DateTime.UtcNow,
                 DateTime.UtcNow);
+        }
+
+        public void Update(
+            string firstName,
+            string lastName,
+            string profileImage)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            ProfileImage = profileImage;
+            UpdatedDateTime = DateTime.UtcNow;
         }
 
     }

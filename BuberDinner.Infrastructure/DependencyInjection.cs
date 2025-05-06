@@ -39,6 +39,7 @@ namespace BuberDinner.Infrastructure
             services.AddScoped<PublishDomainEventsInterceptor>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
+            services.AddScoped<IHostRepository, HostRepository>();  
 
             return services;
         }
