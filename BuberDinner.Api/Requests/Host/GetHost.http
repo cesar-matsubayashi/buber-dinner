@@ -1,14 +1,7 @@
 @host = https://localhost:7041
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCdWJlckRpbm5lci5Eb21haW4uVXNlci5WYWx1ZU9iamVjdHMuVXNlcklkIiwiZ2l2ZW5fbmFtZSI6IkNlc2FyIiwiZmFtaWx5X25hbWUiOiJNYXRzdWJheWFzaGkiLCJqdGkiOiJmZTFmM2Q1Ni02MTUxLTQ3MGEtOTI0MS1kNjk5MjhlZDhlYmEiLCJleHAiOjE3NDY3MTAyMjMsImlzcyI6IkJ1YmVyRGlubmVyIiwiYXVkIjoiQnViZXJEaW5uZXIifQ.FIV33naxD98VB_MFwMVFDDWv93ONC2vnZQUAhkTNhao
-@hostId = 2bf01bdd-72bc-41f6-aaa2-7321cf5c887d
+@hostId = f5d0c14f-338e-4ea3-a2ea-849789df2310
 
-POST {{host}}/hosts
+GET {{host}}/hosts/{{hostId}}
 Content-Type: application/json
 Authorization: Bearer {{token}}
-
-{
-    "firstName": "Tiffany",
-    "lastName": "Doe",
-    "profileImage": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp",
-    "userId": "f8edcceb-fbca-4acc-a69d-31c52e2d2a69"
-}
