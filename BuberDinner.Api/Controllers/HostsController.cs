@@ -1,7 +1,10 @@
 ﻿using BuberDinner.Application.Hosts.Commands.CreateHost;
 using BuberDinner.Application.Hosts.Commands.DeleteHost;
+using BuberDinner.Application.Hosts.Commands.UpdateHost;
 using BuberDinner.Application.Hosts.Queries.GetHost;
+using BuberDinner.Application.Menus.Commands.UpdateMenu;
 using BuberDinner.Contracts.Hosts;
+using BuberDinner.Contracts.Menus;
 using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -51,6 +54,19 @@ namespace BuberDinner.Api.Controllers
 
             return deleteHostResult.Match(
                 _ => NoContent(),
+                errors => Problem(errors));
+        }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UpdateHost(
+            UpdateHostRequest request,
+            Guid id)
+        {
+            var command = _mapper.Map<UpdateHostCommand>((request, id));
+            var updateHostResult = await _mediator.Send(command);
+
+            return updateHostResult.Match(
+                host => Ok(_mapper.Map<HostResponse>(host)),
                 errors => Problem(errors));
         }
     }
