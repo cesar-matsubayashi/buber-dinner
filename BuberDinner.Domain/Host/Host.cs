@@ -2,12 +2,8 @@
 using BuberDinner.Domain.Common.ValueObjects;
 using BuberDinner.Domain.Dinner.ValueObjects;
 using BuberDinner.Domain.Host.ValueObjects;
-using BuberDinner.Domain.Menu.Entities;
-using BuberDinner.Domain.Menu.Events;
 using BuberDinner.Domain.Menu.ValueObjects;
 using BuberDinner.Domain.User.ValueObjects;
-using static System.Collections.Specialized.BitVector32;
-using System.Xml.Linq;
 
 namespace BuberDinner.Domain.Host
 {
@@ -73,5 +69,8 @@ namespace BuberDinner.Domain.Host
             UpdatedDateTime = DateTime.UtcNow;
         }
 
+#pragma warning disable CS8618
+        private Host() { }
+#pragma warning restore CS8618 
     }
 }
