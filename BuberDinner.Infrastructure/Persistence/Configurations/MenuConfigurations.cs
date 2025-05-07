@@ -1,4 +1,5 @@
-﻿using BuberDinner.Domain.Host.ValueObjects;
+﻿using BuberDinner.Domain.Host;
+using BuberDinner.Domain.Host.ValueObjects;
 using BuberDinner.Domain.Menu;
 using BuberDinner.Domain.Menu.Entities;
 using BuberDinner.Domain.Menu.ValueObjects;
@@ -133,6 +134,11 @@ namespace BuberDinner.Infrastructure.Persistence.Configurations
                 .HasConversion(
                     id => id.Value,
                     value => HostId.Create(value));
+
+            builder.HasOne<Host>()
+                .WithMany()
+                .HasForeignKey(m => m.HostId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
