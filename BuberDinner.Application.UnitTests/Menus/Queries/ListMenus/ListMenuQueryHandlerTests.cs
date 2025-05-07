@@ -26,14 +26,14 @@ namespace BuberDinner.Application.UnitTests.Menus.Queries.ListMenus
         {
             var menus = _menus.Where(m => m.HostId == listMenuQuery.HostId).ToList();
             _mockRepository.Setup(
-                r => r.FindAllAsync(listMenuQuery.HostId))
+                r => r.GetAllAsync(listMenuQuery.HostId))
                     .ReturnsAsync(menus);
 
             var result = await _handler.Handle(listMenuQuery, default);
 
             result.IsError.Should().BeFalse();
             result.Value.Should().BeEquivalentTo(menus);
-            _mockRepository.Verify(m => m.FindAllAsync(listMenuQuery.HostId), Times.Once());
+            _mockRepository.Verify(m => m.GetAllAsync(listMenuQuery.HostId), Times.Once());
         }
 
         public static List<Menu> CreateMenus()

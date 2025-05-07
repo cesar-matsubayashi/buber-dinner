@@ -9,7 +9,7 @@ namespace BuberDinner.Application.Common.Interfaces.Persistence
         Task AddAsync(Menu menu);
         Task DeleteAsync(MenuId id);
         Task<Menu> GetAsync (MenuId id);
-        Task<List<Menu>> FindAllAsync(HostId hostId);
+        Task<List<Menu>> GetAllAsync(HostId hostId);
         Task UpdateAsync (Menu menu);
     }
 }

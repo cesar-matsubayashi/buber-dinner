@@ -19,7 +19,7 @@ namespace BuberDinner.Application.Menus.Queries.List
             ListMenuQuery request, 
             CancellationToken cancellationToken)
         {
-            var listMenu = await _menuRepository.FindAllAsync(request.HostId);
+            var listMenu = await _menuRepository.GetAllAsync(request.HostId);
 
             return listMenu;
         }

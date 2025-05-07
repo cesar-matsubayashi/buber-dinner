@@ -33,7 +33,7 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
             }
         }
 
-        public async Task<List<Menu>> FindAllAsync(HostId hostId)
+        public async Task<List<Menu>> GetAllAsync(HostId hostId)
         {
             return await _dbContext.Set<Menu>()
                 .Where(m =>  m.HostId == hostId)
