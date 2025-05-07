@@ -31,7 +31,7 @@ namespace BuberDinner.Application.UnitTests.Hosts.Queries.GetHost
             var host = _hosts.First(m => m.Id == getHostQuery.Id);
             _mockRepository.Setup(r => r.GetAsync(getHostQuery.Id))
                 .ReturnsAsync(host);
-            _mockMenuRepository.Setup(r => r.FindAllAsync(host.Id))
+            _mockMenuRepository.Setup(r => r.GetAllMenuIdsByHostId(host.Id))
                 .ReturnsAsync([]);
 
             var result = await _handler.Handle(getHostQuery, default);

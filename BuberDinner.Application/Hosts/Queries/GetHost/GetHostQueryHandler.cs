@@ -31,9 +31,9 @@ namespace BuberDinner.Application.Hosts.Queries.GetHost
                 return Errors.Host.NotFound;
             }
 
-            var menus = await _menuRepository.FindAllAsync(host.Id);
+            var menuIds = await _menuRepository.GetAllMenuIdsByHostId(host.Id);
 
-            host.SetMenuIds(menus.Select(m => m.Id));
+            host.SetMenuIds(menuIds);
 
             return host;
         }

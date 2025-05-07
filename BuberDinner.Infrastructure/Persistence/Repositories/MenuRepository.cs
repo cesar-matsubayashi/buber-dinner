@@ -40,6 +40,14 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
                 .ToListAsync();
         }
 
+        public async Task<List<MenuId>> GetAllMenuIdsByHostId(HostId hostId)
+        {
+            return await _dbContext.Menus
+                .Where(menu => menu.HostId == hostId)
+                .Select(menu => menu.Id)
+                .ToListAsync();
+        }
+
         public async Task<Menu?> GetAsync(MenuId id)
         {
             return await _dbContext.Set<Menu>().FindAsync(id);
