@@ -1,5 +1,4 @@
 ﻿using BuberDinner.Application.Common.Interfaces.Persistence;
-using BuberDinner.Application.Menus.Queries.List;
 using BuberDinner.Domain.Host;
 using BuberDinner.Domain.Host.ValueObjects;
 
@@ -7,40 +6,39 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
 {
     public class HostRepository : IHostRepository
     {
-        private static List<Host> _hosts = new();
+        private readonly BuberDinnerDbContext _dbContext;
 
-        public Task AddAsync(Host host)
+        public HostRepository(BuberDinnerDbContext dbContext)
         {
-            _hosts.Add(host);
-            return Task.CompletedTask;
+            _dbContext = dbContext;
         }
 
-        public Task DeleteAsync(HostId id)
+        public async Task AddAsync(Host host)
         {
-            _hosts.RemoveAll(h => h.Id == id);
-            return Task.CompletedTask;
+            await _dbContext.AddAsync(host);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public Task<Host> GetAsync(HostId id)
+        public async Task DeleteAsync(HostId id)
         {
-            var host = _hosts.FirstOrDefault(h => h.Id == id);
+            var host = await _dbContext.Hosts.FindAsync(id);
 
-            return Task.FromResult(host)!;
-        }
-
-        public Task UpdateAsync(Host host)
-        {
-            var updateHost = _hosts.FirstOrDefault(host => host.Id == host.Id);
-
-            if(updateHost is not null)
+            if (host is not null)
             {
-                updateHost.Update(
-                    host.FirstName,
-                    host.LastName,
-                    host.ProfileImage);
+                _dbContext.Remove(host);
+                await _dbContext.SaveChangesAsync();
             }
+        }
 
-            return Task.CompletedTask;
+        public async Task<Host?> GetAsync(HostId id)
+        {
+            return await _dbContext.Hosts.FindAsync(id);
+        }
+
+        public async Task UpdateAsync(Host host)
+        {
+            _dbContext.Update(host);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

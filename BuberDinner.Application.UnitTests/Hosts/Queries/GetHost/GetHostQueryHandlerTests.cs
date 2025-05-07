@@ -11,12 +11,16 @@ namespace BuberDinner.Application.UnitTests.Hosts.Queries.GetHost
     {
         private readonly GetHostQueryHandler _handler;
         private readonly Mock<IHostRepository> _mockRepository;
+        private readonly Mock<IMenuRepository> _mockMenuRepository;
         private static readonly List<Host> _hosts = CreateHosts();
 
         public GetHostQueryHandlerTests()
         {
             _mockRepository = new Mock<IHostRepository>();
-            _handler = new GetHostQueryHandler(_mockRepository.Object);
+            _mockMenuRepository = new Mock<IMenuRepository>();
+            _handler = new GetHostQueryHandler(
+                _mockRepository.Object,
+                _mockMenuRepository.Object);
         }
 
         [Theory]
@@ -27,6 +31,8 @@ namespace BuberDinner.Application.UnitTests.Hosts.Queries.GetHost
             var host = _hosts.First(m => m.Id == getHostQuery.Id);
             _mockRepository.Setup(r => r.GetAsync(getHostQuery.Id))
                 .ReturnsAsync(host);
+            _mockMenuRepository.Setup(r => r.FindAllAsync(host.Id))
+                .ReturnsAsync([]);
 
             var result = await _handler.Handle(getHostQuery, default);
 

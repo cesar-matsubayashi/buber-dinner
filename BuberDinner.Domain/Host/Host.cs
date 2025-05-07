@@ -69,6 +69,18 @@ namespace BuberDinner.Domain.Host
             UpdatedDateTime = DateTime.UtcNow;
         }
 
+        public void SetMenuIds(IEnumerable<MenuId> menuIds)
+        {
+            _menuIds.Clear();
+            _menuIds.AddRange(menuIds);
+        }
+
+        public void SetDinnerIds(IEnumerable<DinnerId> dinnerIds)
+        {
+            _dinnerIds.Clear();
+            _dinnerIds.AddRange(dinnerIds);
+        }
+
 #pragma warning disable CS8618
         private Host() { }
 #pragma warning restore CS8618 

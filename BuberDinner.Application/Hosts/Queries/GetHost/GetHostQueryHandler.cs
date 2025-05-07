@@ -10,10 +10,14 @@ namespace BuberDinner.Application.Hosts.Queries.GetHost
         : IRequestHandler<GetHostQuery, ErrorOr<Host>>
     {
         private readonly IHostRepository _hostRepository;
+        private readonly IMenuRepository _menuRepository;
 
-        public GetHostQueryHandler(IHostRepository hostRepository)
+        public GetHostQueryHandler(
+            IHostRepository hostRepository, 
+            IMenuRepository menuRepository)
         {
             _hostRepository = hostRepository;
+            _menuRepository = menuRepository;
         }
 
         public async Task<ErrorOr<Host>> Handle(
@@ -26,6 +30,10 @@ namespace BuberDinner.Application.Hosts.Queries.GetHost
             {
                 return Errors.Host.NotFound;
             }
+
+            var menus = await _menuRepository.FindAllAsync(host.Id);
+
+            host.SetMenuIds(menus.Select(m => m.Id));
 
             return host;
         }
