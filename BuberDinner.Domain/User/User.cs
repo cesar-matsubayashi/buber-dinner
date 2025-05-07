@@ -5,12 +5,12 @@ namespace BuberDinner.Domain.Entities
 {
     public sealed class User : AggregateRoot<UserId>
     {
-        public string FirstName { get; set; } = null!;
-        public string LastName { get; set; } = null!;
-        public string Email { get; set; } = null!;
-        public string Password { get; set; } = null!;
-        public DateTime CreatedDateTime { get; }
-        public DateTime UpdatedDateTime { get; }
+        public string FirstName { get; private set; } = null!;
+        public string LastName { get; private set; } = null!;
+        public string Email { get; private set; } = null!;
+        public string Password { get; private set; } = null!;
+        public DateTime CreatedDateTime { get; private set; }
+        public DateTime UpdatedDateTime { get; private set; }
 
         public User(
             UserId userId,
@@ -45,5 +45,9 @@ namespace BuberDinner.Domain.Entities
                 DateTime.UtcNow,
                 DateTime.UtcNow);
         }
+
+#pragma warning disable CS8618
+        private User() { }
+#pragma warning restore CS8618 
     }
 }

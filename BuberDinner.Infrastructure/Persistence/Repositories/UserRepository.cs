@@ -1,19 +1,28 @@
 ﻿using BuberDinner.Application.Common.Interfaces.Persistence;
 using BuberDinner.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace BuberDinner.Infrastructure.Persistence.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private static List<User> _users = new();
-        public void Add(User user)
+        private readonly BuberDinnerDbContext _dbContext;
+
+        public UserRepository(BuberDinnerDbContext dbContext)
         {
-            _users.Add(user);
+            _dbContext = dbContext;
         }
 
-        public User? GetUserByEmail(string email)
+        public async Task Add(User user)
         {
-            return _users.SingleOrDefault(user => user.Email == email);
+            await _dbContext.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<User?> GetUserByEmail(string email)
+        {
+            return await _dbContext.Users
+                .FirstOrDefaultAsync(u => u.Email == email);
         }
     }
 }

@@ -26,14 +26,14 @@ namespace BuberDinner.Application.Authentication.Commands.Register
             RegisterCommand command,
             CancellationToken cancellationToken)
         {
-            await Task.CompletedTask;
+            var user = await _userRepository.GetUserByEmail(command.Email);
 
-            if (_userRepository.GetUserByEmail(command.Email) is not null)
+            if (user is not null)
             {
                 return Errors.User.DuplicateEmail;
             }
 
-            var user = User.Create
+            user = User.Create
             (
                 command.FirstName,
                 command.LastName,
@@ -41,15 +41,7 @@ namespace BuberDinner.Application.Authentication.Commands.Register
                 command.Password
             );
 
-            //var user = new User
-            //{
-            //    FirstName = command.FirstName,
-            //    LastName = command.LastName,
-            //    Email = command.Email,
-            //    Password = command.Password
-            //};
-
-            _userRepository.Add(user);
+            await _userRepository.Add(user);
 
             var token = _jwtTokenGenerator.GenerateToken(user);
 
