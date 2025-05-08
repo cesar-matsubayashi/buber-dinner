@@ -9,7 +9,7 @@ namespace BuberDinner.Domain.Dinner
 {
     public sealed class Dinner : AggregateRoot<DinnerId>
     {
-        private readonly List<ReservationId> _reservationIds = new();
+        private readonly List<Reservation> _reservations = new();
 
         public string Name { get; }
         public string Description { get; }
@@ -25,12 +25,12 @@ namespace BuberDinner.Domain.Dinner
         public MenuId MenuId { get; }
         public string ImageUrl { get; }
         public Location Location { get; }
-        public IReadOnlyList<ReservationId> ReservationIds 
-            => _reservationIds.AsReadOnly();
+        public IReadOnlyList<Reservation> Reservation 
+            => _reservations.AsReadOnly();
         public DateTime CreatedDateTime { get; }
         public DateTime UpdatedDateTime { get; }
 
-        public Dinner(
+        private Dinner(
             DinnerId dinnerId, 
             string name, 
             string description, 
@@ -43,9 +43,8 @@ namespace BuberDinner.Domain.Dinner
             HostId hostId, 
             MenuId menuId, 
             string imageUrl, 
-            Location location, 
-            DateTime createdDateTime, 
-            DateTime updatedDateTime)
+            Location location,
+            List<Reservation> reservations)
             : base (dinnerId)
         {
             Name = name;
@@ -60,8 +59,9 @@ namespace BuberDinner.Domain.Dinner
             MenuId = menuId;
             ImageUrl = imageUrl;
             Location = location;
-            CreatedDateTime = createdDateTime;
-            UpdatedDateTime = updatedDateTime;
+            _reservations = reservations;
+            CreatedDateTime = DateTime.UtcNow;
+            UpdatedDateTime = DateTime.UtcNow;
         }
 
         public static Dinner Create(
@@ -75,7 +75,8 @@ namespace BuberDinner.Domain.Dinner
             HostId hostId,
             MenuId menuId,
             string imageUrl,
-            Location location)
+            Location location,
+            List<Reservation> reservations)
         {
             return new(
                 DinnerId.CreateUnique(),
@@ -91,8 +92,7 @@ namespace BuberDinner.Domain.Dinner
                 menuId,
                 imageUrl,
                 location,
-                DateTime.UtcNow,
-                DateTime.UtcNow);
+                reservations ?? new());
         }
     }
 
