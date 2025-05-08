@@ -15,22 +15,20 @@ namespace BuberDinner.Domain.Dinner.Entities
         public DateTime CreatedDateTime { get; }
         public DateTime UpdatedDateTime { get; }
 
-        public Reservation(
+        private Reservation(
             ReservationId reservationId, 
             int guestCount, 
-            ReservationStatus reservationStatus, 
+            ReservationStatus status, 
             GuestId guestId, 
-            BillId billId, 
-            DateTime createdDateTime, 
-            DateTime updatedDateTime)
+            BillId billId)
             : base (reservationId)
         {
             GuestCount = guestCount;
-            Status = reservationStatus;
+            Status = status;
             GuestId = guestId;
             BillId = billId;
-            CreatedDateTime = createdDateTime;
-            UpdatedDateTime = updatedDateTime;
+            CreatedDateTime = DateTime.UtcNow;
+            UpdatedDateTime = DateTime.UtcNow;
         }
 
         public static Reservation Create(
@@ -43,9 +41,7 @@ namespace BuberDinner.Domain.Dinner.Entities
                 guestCount,
                 ReservationStatus.Reserved,
                 guestId,
-                billId,
-                DateTime.UtcNow,
-                DateTime.UtcNow);
+                billId);
         }
     }
 
