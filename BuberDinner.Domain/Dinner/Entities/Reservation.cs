@@ -8,7 +8,7 @@ namespace BuberDinner.Domain.Dinner.Entities
     public sealed class Reservation : AggregateRoot<ReservationId>
     {
         public int GuestCount { get; }
-        public ReservationStatus ReservationStatus { get; }
+        public ReservationStatus Status { get; }
         public GuestId GuestId { get; }
         public BillId BillId { get; }
         public DateTime? ArrivalDateTime { get; }
@@ -26,7 +26,7 @@ namespace BuberDinner.Domain.Dinner.Entities
             : base (reservationId)
         {
             GuestCount = guestCount;
-            ReservationStatus = reservationStatus;
+            Status = reservationStatus;
             GuestId = guestId;
             BillId = billId;
             CreatedDateTime = createdDateTime;
