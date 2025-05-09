@@ -2,8 +2,6 @@
 using BuberDinner.Domain.Common.ValueObjects;
 using BuberDinner.Domain.Dinner;
 using BuberDinner.Domain.Dinner.Entities;
-using BuberDinner.Domain.Host.ValueObjects;
-using BuberDinner.Domain.Menu.ValueObjects;
 using ErrorOr;
 using MediatR;
 
@@ -34,6 +32,7 @@ namespace BuberDinner.Application.Dinners.Commands.CreateDinner
                 request.Location.Longitude);
 
             var dinner = Dinner.Create(
+                request.HostId,
                 request.Name,
                 request.Description,
                 request.StartDateTime,
@@ -41,7 +40,6 @@ namespace BuberDinner.Application.Dinners.Commands.CreateDinner
                 request.IsPublic,
                 request.MaxGuests,
                 price,
-                request.HostId,
                 request.MenuId,
                 request.ImageUrl,
                 location);

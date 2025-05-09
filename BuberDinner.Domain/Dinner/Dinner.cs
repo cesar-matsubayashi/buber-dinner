@@ -32,6 +32,7 @@ namespace BuberDinner.Domain.Dinner
 
         private Dinner(
             DinnerId dinnerId, 
+            HostId hostId, 
             string name, 
             string description, 
             DateTime startDateTime, 
@@ -64,6 +65,7 @@ namespace BuberDinner.Domain.Dinner
         }
 
         public static Dinner Create(
+            HostId hostId,
             string name,
             string description,
             DateTime startDateTime,
@@ -78,6 +80,7 @@ namespace BuberDinner.Domain.Dinner
         {
             return new(
                 DinnerId.CreateUnique(),
+                hostId,
                 name,
                 description,
                 startDateTime,
