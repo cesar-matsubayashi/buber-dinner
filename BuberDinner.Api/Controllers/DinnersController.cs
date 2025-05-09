@@ -1,5 +1,6 @@
 ﻿using BuberDinner.Application.Dinners.Commands.CreateDinner;
 using BuberDinner.Application.Dinners.Queries.GetDinner;
+using BuberDinner.Application.Dinners.Queries.ListDinner;
 using BuberDinner.Contracts.Dinners;
 using MapsterMapper;
 using MediatR;
@@ -20,9 +21,14 @@ namespace BuberDinner.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListDinners() 
+        public async Task<IActionResult> ListDinners() 
         {
-            return Ok(Array.Empty<string>());
+            var query = new ListDinnersQuery();
+            var listDinnersResult = await _mediator.Send(query);
+
+            return listDinnersResult.Match(
+                dinners => Ok(_mapper.Map<List<DinnerResponse>>(dinners)),
+                errors => Problem(errors));
         }
 
         [HttpPost]

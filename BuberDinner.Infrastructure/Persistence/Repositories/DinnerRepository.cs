@@ -21,7 +21,7 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
 
         public async Task<List<Dinner>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return _dinners;
         }
 
         public async Task<Dinner?> GetAsync(DinnerId id)
