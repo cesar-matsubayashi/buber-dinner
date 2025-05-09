@@ -1,9 +1,15 @@
-﻿namespace BuberDinner.Application.UnitTests.TestUtils.Constants
+﻿using BuberDinner.Domain.Dinner.ValueObjects;
+using BuberDinner.Domain.Menu.ValueObjects;
+
+namespace BuberDinner.Application.UnitTests.TestUtils.Constants
 {
     public static partial class Constants
     {
         public static class Menu
         {
+            public static readonly MenuId Id = MenuId.Create(
+                Guid.Parse("93ce3d28-31c7-409b-bb61-2e1f9e7f1ee9"));
+
             public const string Name = "Menu Name";
             public const string Description = "Menu Description";
             public const string SectionName = "Menu Section Name";
