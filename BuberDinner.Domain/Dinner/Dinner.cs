@@ -25,7 +25,7 @@ namespace BuberDinner.Domain.Dinner
         public MenuId MenuId { get; }
         public string ImageUrl { get; }
         public Location Location { get; }
-        public IReadOnlyList<Reservation> Reservation 
+        public IReadOnlyList<Reservation> Reservations 
             => _reservations.AsReadOnly();
         public DateTime CreatedDateTime { get; }
         public DateTime UpdatedDateTime { get; }
@@ -43,8 +43,7 @@ namespace BuberDinner.Domain.Dinner
             HostId hostId, 
             MenuId menuId, 
             string imageUrl, 
-            Location location,
-            List<Reservation> reservations)
+            Location location)
             : base (dinnerId)
         {
             Name = name;
@@ -59,7 +58,7 @@ namespace BuberDinner.Domain.Dinner
             MenuId = menuId;
             ImageUrl = imageUrl;
             Location = location;
-            _reservations = reservations;
+            Status = DinnerStatus.Upcoming;
             CreatedDateTime = DateTime.UtcNow;
             UpdatedDateTime = DateTime.UtcNow;
         }
@@ -75,8 +74,7 @@ namespace BuberDinner.Domain.Dinner
             HostId hostId,
             MenuId menuId,
             string imageUrl,
-            Location location,
-            List<Reservation> reservations)
+            Location location)
         {
             return new(
                 DinnerId.CreateUnique(),
@@ -91,8 +89,7 @@ namespace BuberDinner.Domain.Dinner
                 hostId,
                 menuId,
                 imageUrl,
-                location,
-                reservations ?? new());
+                location);
         }
     }
 

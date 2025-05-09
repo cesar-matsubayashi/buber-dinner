@@ -7,7 +7,7 @@
         public float Latitude { get; } 
         public float Longitude { get; }
 
-        public Location(
+        private Location(
             string name, 
             string address, 
             float latitude, 
@@ -27,7 +27,9 @@
             return new(name, address, latitude, longitude);
         }
 
-
+#pragma warning disable CS8618
+        private Location() { }
+#pragma warning restore CS8618 
 
     }
 }
