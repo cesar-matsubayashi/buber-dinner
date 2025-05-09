@@ -36,7 +36,7 @@
         string Status,
         Guid GuestId,
         Guid BillId,
-        DateTime ArrivalDateTime,
+        DateTime? ArrivalDateTime,
         DateTime CreatedDateTime,
         DateTime UpdatedDateTime);
 }

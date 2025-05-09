@@ -1,8 +1,10 @@
 ﻿using BuberDinner.Application.Dinners.Commands.CreateDinner;
+using BuberDinner.Application.Dinners.Queries.GetDinner;
 using BuberDinner.Contracts.Dinners;
 using BuberDinner.Domain.Common.ValueObjects;
 using BuberDinner.Domain.Dinner;
 using BuberDinner.Domain.Dinner.Entities;
+using BuberDinner.Domain.Dinner.ValueObjects;
 using BuberDinner.Domain.Host.ValueObjects;
 using BuberDinner.Domain.Menu.ValueObjects;
 using Mapster;
@@ -37,6 +39,8 @@ namespace BuberDinner.Api.Common.Mapping
                 .Map(dest => dest.GuestId, src => src.GuestId.Value)
                 .Map(dest => dest.BillId, src => src.BillId.Value);
 
+            config.NewConfig<Guid, GetDinnerQuery>()
+                .Map(dest => dest.Id, src => DinnerId.Create(src));
         }
     }
 }

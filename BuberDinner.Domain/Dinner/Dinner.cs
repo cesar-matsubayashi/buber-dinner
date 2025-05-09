@@ -1,7 +1,9 @@
-﻿using BuberDinner.Domain.Common.Models;
+﻿using BuberDinner.Domain.Bill.ValueObjects;
+using BuberDinner.Domain.Common.Models;
 using BuberDinner.Domain.Common.ValueObjects;
 using BuberDinner.Domain.Dinner.Entities;
 using BuberDinner.Domain.Dinner.ValueObjects;
+using BuberDinner.Domain.Guest.ValueObjects;
 using BuberDinner.Domain.Host.ValueObjects;
 using BuberDinner.Domain.Menu.ValueObjects;
 
@@ -41,7 +43,6 @@ namespace BuberDinner.Domain.Dinner
             bool isPublic, 
             int maxGuests, 
             Price price, 
-            HostId hostId, 
             MenuId menuId, 
             string imageUrl, 
             Location location)
@@ -73,7 +74,6 @@ namespace BuberDinner.Domain.Dinner
             bool isPublic,
             int maxGuests,
             Price price,
-            HostId hostId,
             MenuId menuId,
             string imageUrl,
             Location location)
@@ -89,10 +89,22 @@ namespace BuberDinner.Domain.Dinner
                 isPublic,
                 maxGuests,
                 price,
-                hostId,
                 menuId,
                 imageUrl,
                 location);
+        }
+
+        public void AddReservation(
+            int guestCount, 
+            GuestId guestId,
+            BillId billId)
+        {
+            var reservation = Reservation.Create(
+                guestCount,
+                guestId,
+                billId);
+
+            _reservations.Add(reservation);
         }
     }
 

@@ -7,7 +7,7 @@ namespace BuberDinner.Application.Common.Interfaces.Persistence
     {
         Task AddAsync(Dinner dinner);
         Task DeleteAsync(DinnerId id);
-        Task<Dinner> GetAsync(DinnerId id);
+        Task<Dinner?> GetAsync(DinnerId id);
         Task<List<Dinner>> GetAllAsync();
         Task UpdateAsync(Dinner dinner);
     }
