@@ -1,5 +1,6 @@
 ﻿using BuberDinner.Application.Dinners.Commands.CreateDinner;
 using BuberDinner.Application.Dinners.Commands.DeleteDinner;
+using BuberDinner.Application.Dinners.Commands.UpdateDinner;
 using BuberDinner.Application.Dinners.Queries.GetDinner;
 using BuberDinner.Application.Dinners.Queries.ListDinner;
 using BuberDinner.Contracts.Dinners;
@@ -65,6 +66,19 @@ namespace BuberDinner.Api.Controllers
 
             return deleteDinnerCommand.Match(
                 _ => NoContent(),
+                errors => Problem(errors));
+        }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UpdateDinner(
+            UpdateDinnerRequest request,
+            Guid id)
+        {
+            var command = _mapper.Map<UpdateDinnerCommand>((request, id));
+            var updateDinnerResult = await _mediator.Send(command);
+
+            return updateDinnerResult.Match(
+                dinner => Ok(_mapper.Map<DinnerResponse>(dinner)),
                 errors => Problem(errors));
         }
     }

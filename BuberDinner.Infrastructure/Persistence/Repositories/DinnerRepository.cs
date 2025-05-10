@@ -35,9 +35,15 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
             return _dinners.FirstOrDefault(d => d.Id == id);
         }
 
-        public async Task UpdateAsync(Dinner dinner)
+        public async Task UpdateAsync(Dinner updatedDinner)
         {
-            throw new NotImplementedException();
+            var dinner = _dinners.FirstOrDefault(d => d.Id == updatedDinner.Id);
+
+            if (dinner is not null)
+            {
+                _dinners.Remove(dinner);
+                _dinners.Add(updatedDinner);
+            }
         }
     }
 }

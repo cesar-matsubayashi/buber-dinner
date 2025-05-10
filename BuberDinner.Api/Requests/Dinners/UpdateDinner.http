@@ -1,0 +1,31 @@
+@host = https://localhost:7041
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCdWJlckRpbm5lci5Eb21haW4uVXNlci5WYWx1ZU9iamVjdHMuVXNlcklkIiwiZ2l2ZW5fbmFtZSI6IlRpZmZhbnkiLCJmYW1pbHlfbmFtZSI6IkRvZSIsImp0aSI6IjQwZGM2MGY1LTMwYzYtNGZmNi1hOTU2LTI0OGY1YTdkMDQwZCIsImV4cCI6MTc0NzM1OTU2OSwiaXNzIjoiQnViZXJEaW5uZXIiLCJhdWQiOiJCdWJlckRpbm5lciJ9.wEcm5CD0jxPvnYRHtdPCLKDsN6obVzXdOHpXEv6cHk8
+@dinnerId = 64dacf50-d0c2-4251-8fa7-6b635fdbbbd8
+
+PUT {{host}}/dinners/{{dinnerId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Yummy Dinner Updated",
+    "description": "A dinner with yummy food Updated",
+    "startDateTime": "2025-05-15T19:00:00.0000000Z",
+    "endDateTime": "2025-05-15T21:00:00.0000000Z",
+    "startedDateTime": "2025-05-15T19:02:00.0000000Z",
+    "endedDateTime": "2025-05-15T20:49:00.0000000Z",
+    "status": "InProgress",
+    "isPublic": true,
+    "maxGuests": 5,
+    "price": {
+        "amount": 12.99,
+        "currency": "USD"
+    },
+    "menuId": "00000000-0000-0000-0000-000000000000",
+    "imageUrl": "https://image.com Updated",
+    "location": {
+        "name": "Dan's Pizza Place Updated",
+        "address": "Berlin, Germany Updated",
+        "latitude": 25.520008,
+        "longitude": 31.404954
+    }
+}

@@ -1,5 +1,6 @@
 ﻿using BuberDinner.Application.Dinners.Commands.CreateDinner;
 using BuberDinner.Application.Dinners.Commands.DeleteDinner;
+using BuberDinner.Application.Dinners.Commands.UpdateDinner;
 using BuberDinner.Application.Dinners.Queries.GetDinner;
 using BuberDinner.Contracts.Dinners;
 using BuberDinner.Domain.Common.ValueObjects;
@@ -43,9 +44,17 @@ namespace BuberDinner.Api.Common.Mapping
             config.NewConfig<Guid, GetDinnerQuery>()
                 .Map(dest => dest.Id, src => DinnerId.Create(src));
 
-
             config.NewConfig<Guid, DeleteDinnerCommand>()
                 .Map(dest => dest.Id, src => DinnerId.Create(src));
+
+            config.NewConfig<(UpdateDinnerRequest Request, Guid Id), UpdateDinnerCommand>()
+                .Map(dest => dest.Id, src => DinnerId.Create(src.Id))
+                .Map(dest => dest.MenuId, src => MenuId.Create(src.Request.MenuId))
+                .Map(dest => dest, src => src.Request);
+
+            config.NewConfig<UpdatePriceRequest, UpdatePriceCommand>();
+
+            config.NewConfig<UpdateLocationRequest, UpdateLocationCommand>();
         }
     }
 }
