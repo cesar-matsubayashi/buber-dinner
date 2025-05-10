@@ -40,26 +40,26 @@ namespace BuberDinner.Application.UnitTests.Dinners.Queries.ListDinners
         {
             var dinner = CreateDinnerUtils.CreateDinner();
             dinner.AddReservation(2,
-                Constants.Guest.Id,
-                Constants.Bill.Id);
+                Constants.Guest.Id1,
+                Constants.Bill.Id1);
             _dinners.Add(dinner);
 
             var dinner2 = CreateDinnerUtils.CreateDinner(
                 start: new DateTime(2025, 5, 10, 19, 0, 0, DateTimeKind.Utc));
             dinner.AddReservation(3,
-                Constants.Guest.Id,
-                Constants.Bill.Id);
+                Constants.Guest.Id1,
+                Constants.Bill.Id1);
             _dinners.Add(dinner2);
 
             var dinner3 = CreateDinnerUtils.CreateDinner(
                 start: new DateTime(2025, 5, 10, 19, 0, 0, DateTimeKind.Utc),
                 price: CreateDinnerUtils.CreatePrice(15.99m));
             dinner3.AddReservation(3,
-                Constants.Guest.Id,
-                Constants.Bill.Id);
+                Constants.Guest.Id1,
+                Constants.Bill.Id1);
             dinner3.AddReservation(2,
-                Constants.Guest.Id,
-                Constants.Bill.Id);
+                Constants.Guest.Id1,
+                Constants.Bill.Id1);
             _dinners.Add(dinner3);
         }
 
