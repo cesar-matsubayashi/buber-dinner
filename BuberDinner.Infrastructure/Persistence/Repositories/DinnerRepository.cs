@@ -16,7 +16,13 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
 
         public async Task DeleteAsync(DinnerId id)
         {
-            throw new NotImplementedException();
+            var dinner = _dinners.FirstOrDefault(d => d.Id == id);
+
+            if (dinner is not null)
+            {
+                _dinners.Remove(dinner);
+            }
+            await Task.CompletedTask;
         }
 
         public async Task<List<Dinner>> GetAllAsync()
