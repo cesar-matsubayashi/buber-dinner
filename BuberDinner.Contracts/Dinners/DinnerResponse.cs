@@ -16,7 +16,7 @@
         Guid MenuId,
         string ImageUrl,
         LocationResponse Location,
-        List<ReservationResponse> Reservations,
+        List<DinnerReservationResponse> Reservations,
         DateTime CreatedDateTime,
         DateTime UpdatedDateTime);
 
@@ -30,7 +30,7 @@
         float Latitude,
         float Longitude);
 
-    public record ReservationResponse(
+    public record DinnerReservationResponse(
         Guid Id,
         int GuestCount,
         string Status,

@@ -1,12 +1,16 @@
 ﻿using BuberDinner.Application.Dinners.Commands.CreateDinner;
+using BuberDinner.Application.Dinners.Commands.CreateReservation;
 using BuberDinner.Application.Dinners.Commands.DeleteDinner;
 using BuberDinner.Application.Dinners.Commands.UpdateDinner;
 using BuberDinner.Application.Dinners.Queries.GetDinner;
 using BuberDinner.Application.Dinners.Queries.ListDinner;
 using BuberDinner.Contracts.Dinners;
+using BuberDinner.Contracts.Dinners.Reservations;
 using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+
+using ReservationResponse = BuberDinner.Contracts.Dinners.Reservations.ReservationResponse;
 
 namespace BuberDinner.Api.Controllers
 {
@@ -79,6 +83,19 @@ namespace BuberDinner.Api.Controllers
 
             return updateDinnerResult.Match(
                 dinner => Ok(_mapper.Map<DinnerResponse>(dinner)),
+                errors => Problem(errors));
+        }
+
+        [HttpPut("{dinnerId:guid}/reservations")]
+        public async Task<IActionResult> CreateDinner(
+            CreateReservationRequest request,
+            Guid dinnerId)
+        {
+            var command = _mapper.Map<CreateReservationCommand>((request, dinnerId));
+            var createReservationCommand = await _mediator.Send(command);
+
+            return createReservationCommand.Match(
+                reservation => Ok(_mapper.Map<ReservationResponse>(reservation)),
                 errors => Problem(errors));
         }
     }
