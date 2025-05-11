@@ -7,13 +7,13 @@ namespace BuberDinner.Domain.Dinner.Entities
 {
     public sealed class Reservation : AggregateRoot<ReservationId>
     {
-        public int GuestCount { get; }
-        public ReservationStatus Status { get; }
-        public GuestId GuestId { get; }
-        public BillId BillId { get; }
-        public DateTime? ArrivalDateTime { get; }
-        public DateTime CreatedDateTime { get; }
-        public DateTime UpdatedDateTime { get; }
+        public int GuestCount { get; private set; }
+        public ReservationStatus Status { get; private set;}
+        public GuestId GuestId { get; private set;}
+        public BillId BillId { get; private set;}
+        public DateTime? ArrivalDateTime { get; private set;}
+        public DateTime CreatedDateTime { get; private set;}
+        public DateTime UpdatedDateTime { get; private set;}
 
         private Reservation(
             ReservationId reservationId, 
@@ -42,6 +42,19 @@ namespace BuberDinner.Domain.Dinner.Entities
                 ReservationStatus.Reserved,
                 guestId,
                 billId);
+        }
+
+        public void Update(
+            int guestCount,
+            BillId billId,
+            ReservationStatus status,
+            DateTime? arrivalDateTime)
+        {
+            GuestCount = guestCount;
+            BillId = billId;
+            Status = status;
+            ArrivalDateTime = arrivalDateTime;
+            UpdatedDateTime = DateTime.UtcNow;
         }
     }
 

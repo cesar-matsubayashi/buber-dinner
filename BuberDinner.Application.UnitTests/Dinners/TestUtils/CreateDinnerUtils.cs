@@ -9,11 +9,12 @@ namespace BuberDinner.Application.UnitTests.Dinners.TestUtils
     {
         public static Dinner CreateDinner(
             DateTime? start = null,
-            Price? price = null)
+            Price? price = null,
+            bool reservation = false)
         {
             DateTime startDateTime = start ?? Constants.Dinner.StartDateTime;
-
-            return Dinner.Create(
+            
+            var dinner = Dinner.Create(
                 Constants.Host.Id,
                 Constants.Dinner.Name,
                 Constants.Dinner.Description,
@@ -25,6 +26,21 @@ namespace BuberDinner.Application.UnitTests.Dinners.TestUtils
                 Constants.Menu.Id,
                 Constants.Dinner.ImageUrl,
                 CreateLocation());
+
+            if (reservation)
+            {
+                dinner.AddReservation(
+                    Constants.Reservation.GuestCount,
+                    Constants.Guest.Id1,
+                    Constants.Bill.Id1);
+
+                dinner.AddReservation(
+                    Constants.Reservation.GuestCount,
+                    Constants.Guest.Id2,
+                    Constants.Bill.Id2);
+            }
+
+            return dinner;
         }
 
         public static Price CreatePrice(

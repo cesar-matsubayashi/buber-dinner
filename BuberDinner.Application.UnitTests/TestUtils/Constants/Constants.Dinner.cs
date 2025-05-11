@@ -11,7 +11,7 @@ namespace BuberDinner.Application.UnitTests.TestUtils.Constants
         {
             public static readonly DinnerId Id = DinnerId.Create(
                 Guid.Parse("65f38155-7984-48dc-96f5-1ecca8ca427d"));
-            
+
             public const string Name = "Dinner Name";
             public const string Description = "Dinner Description";
             public const DinnerStatus Status = DinnerStatus.Upcoming;
@@ -26,11 +26,8 @@ namespace BuberDinner.Application.UnitTests.TestUtils.Constants
             public const string LocationAddress = "Berlin, Germany";
             public const float LocationLatitude = 52.520008f;
             public const float LocationLongitude = 13.404954f;
-            
-            public const int GuestCount = 10;
-            public const ReservationStatus reservationStatus = ReservationStatus.Reserved;
 
-            public static readonly DateTime StartDateTime = 
+            public static readonly DateTime StartDateTime =
                 new DateTime(2025, 5, 9, 19, 0, 0, DateTimeKind.Utc);
 
             public static DateTime EndDateTimeFromStartDateTime(DateTime startDateTime) =>
@@ -41,6 +38,14 @@ namespace BuberDinner.Application.UnitTests.TestUtils.Constants
 
             public static DateTime EndedDateTimeFromStartDateTime(DateTime startDateTime) =>
                 startDateTime.AddHours(1).AddMinutes(51);
+        }
+
+        public static class Reservation
+        {
+            public static readonly ReservationId Id = ReservationId.Create(
+                Guid.Parse("b875aa89-7ad6-4456-bb34-ea53c2d721a9"));
+
+            public const int GuestCount = 2;
 
             public static DateTime ArrivalDateTimeFromStartDateTime(DateTime startDateTime) =>
                 startDateTime.AddMinutes(1);

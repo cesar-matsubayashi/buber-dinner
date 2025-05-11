@@ -2,6 +2,7 @@
 using BuberDinner.Application.Dinners.Commands.CreateReservation;
 using BuberDinner.Application.Dinners.Commands.DeleteDinner;
 using BuberDinner.Application.Dinners.Commands.UpdateDinner;
+using BuberDinner.Application.Dinners.Commands.UpdateReservation;
 using BuberDinner.Application.Dinners.Queries.GetDinner;
 using BuberDinner.Contracts.Dinners;
 using BuberDinner.Contracts.Dinners.Reservations;
@@ -71,6 +72,13 @@ namespace BuberDinner.Api.Common.Mapping
                 .Map(dest => dest.Status, src => src.Status.ToString())
                 .Map(dest => dest.GuestId, src => src.GuestId.Value)
                 .Map(dest => dest.BillId, src => src.BillId.Value);
+
+            config.NewConfig<(UpdateReservationRequest Request, Guid DinnerId, Guid ReservationId),
+                UpdateReservationCommand>()
+                .Map(dest => dest.Id, src => ReservationId.Create(src.ReservationId))
+                .Map(dest => dest.DinnerId, src => DinnerId.Create(src.DinnerId))
+                .Map(dest => dest.BillId, src => BillId.Create(src.Request.BillId))
+                .Map(dest => dest, src => src.Request);
 
         }
     }

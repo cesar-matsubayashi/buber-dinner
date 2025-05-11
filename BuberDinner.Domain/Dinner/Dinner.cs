@@ -107,6 +107,26 @@ namespace BuberDinner.Domain.Dinner
             _reservations.Add(reservation);
         }
 
+        public void UpdateReservation(
+            ReservationId reservationId,
+            int guestCount,
+            BillId billId,
+            ReservationStatus status,
+            DateTime? arrivalDateTime)
+        {
+            var reservation = Reservations.FirstOrDefault(
+                r => r.Id == reservationId);
+            
+            if (reservation is not null)
+            {
+                reservation.Update(
+                    guestCount,
+                    billId,
+                    status,
+                    arrivalDateTime);
+            }
+        }
+
         public void Update(
             string name,
             string description,
