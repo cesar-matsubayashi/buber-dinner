@@ -27,4 +27,8 @@
     <ProjectReference Include="..\BuberDinner.Domain\BuberDinner.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Guests\TestUtils\" />
+  </ItemGroup>
+
 </Project>
