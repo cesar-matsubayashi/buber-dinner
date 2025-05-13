@@ -6,7 +6,7 @@ namespace BuberDinner.Application.Common.Interfaces.Persistence
     public interface IDinnerRepository
     {
         Task AddAsync(Dinner dinner);
-        Task DeleteAsync(DinnerId id);
+        Task DeleteAsync(Dinner dinner);
         Task<Dinner?> GetAsync(DinnerId id);
         Task<List<Dinner>> GetAllAsync();
         Task UpdateAsync(Dinner dinner);

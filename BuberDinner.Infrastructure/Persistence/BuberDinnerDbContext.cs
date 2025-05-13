@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Domain.Common.Models;
+using BuberDinner.Domain.Dinner;
 using BuberDinner.Domain.Entities;
 using BuberDinner.Domain.Host;
 using BuberDinner.Domain.Menu;
@@ -18,6 +19,7 @@ namespace BuberDinner.Infrastructure.Persistence
         public DbSet<Menu> Menus { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Host> Hosts { get; set; } = null!;
+        public DbSet<Dinner> Dinners { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

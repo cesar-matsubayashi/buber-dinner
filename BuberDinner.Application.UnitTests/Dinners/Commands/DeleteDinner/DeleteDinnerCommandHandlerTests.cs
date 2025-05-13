@@ -35,7 +35,7 @@ namespace BuberDinner.Application.UnitTests.Dinners.Commands.DeleteDinner
             result.IsError.Should().BeFalse();
             result.Value.Should().BeOfType<Deleted>();
             _mockRepository.Verify(m => m.GetAsync(deleteDinnerCommand.Id), Times.Once);
-            _mockRepository.Verify(m => m.DeleteAsync(deleteDinnerCommand.Id), Times.Once);
+            _mockRepository.Verify(m => m.DeleteAsync(dinner), Times.Once);
         }
 
         private static void CreateDinners()

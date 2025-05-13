@@ -1,49 +1,45 @@
 ﻿using BuberDinner.Application.Common.Interfaces.Persistence;
 using BuberDinner.Domain.Dinner;
 using BuberDinner.Domain.Dinner.ValueObjects;
+using Microsoft.EntityFrameworkCore;
 
 namespace BuberDinner.Infrastructure.Persistence.Repositories
 {
     public class DinnerRepository : IDinnerRepository
     {
-        private static List<Dinner> _dinners = new();
+        private readonly BuberDinnerDbContext _dbContext;
+
+        public DinnerRepository(BuberDinnerDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         public async Task AddAsync(Dinner dinner)
         {
-            _dinners.Add(dinner);
-            await Task.CompletedTask;
+            await _dbContext.AddAsync(dinner);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(DinnerId id)
+        public async Task DeleteAsync(Dinner dinner)
         {
-            var dinner = _dinners.FirstOrDefault(d => d.Id == id);
-
-            if (dinner is not null)
-            {
-                _dinners.Remove(dinner);
-            }
-            await Task.CompletedTask;
+            _dbContext.Remove(dinner);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<List<Dinner>> GetAllAsync()
         {
-            return _dinners;
+            return await _dbContext.Dinners.ToListAsync();
         }
 
         public async Task<Dinner?> GetAsync(DinnerId id)
         {
-            return _dinners.FirstOrDefault(d => d.Id == id);
+            return await _dbContext.Dinners.FindAsync(id);
         }
 
-        public async Task UpdateAsync(Dinner updatedDinner)
+        public async Task UpdateAsync(Dinner dinner)
         {
-            var dinner = _dinners.FirstOrDefault(d => d.Id == updatedDinner.Id);
-
-            if (dinner is not null)
-            {
-                _dinners.Remove(dinner);
-                _dinners.Add(updatedDinner);
-            }
+            _dbContext.Update(dinner);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

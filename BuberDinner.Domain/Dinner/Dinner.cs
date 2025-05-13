@@ -157,6 +157,10 @@ namespace BuberDinner.Domain.Dinner
             Location = location;
             UpdatedDateTime = DateTime.UtcNow;
         }
+
+#pragma warning disable CS8618
+        private Dinner() { }
+#pragma warning restore CS8618 
     }
 
     public enum DinnerStatus

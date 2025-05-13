@@ -25,7 +25,7 @@ namespace BuberDinner.Application.Dinners.Commands.DeleteDinner
                 return Errors.Dinner.NotFound;
             }
 
-            await _dinnerRepository.DeleteAsync(request.Id);
+            await _dinnerRepository.DeleteAsync(dinner);
 
             return new Deleted();
         }

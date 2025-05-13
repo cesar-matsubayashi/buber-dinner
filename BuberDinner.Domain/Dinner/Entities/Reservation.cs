@@ -56,6 +56,10 @@ namespace BuberDinner.Domain.Dinner.Entities
             ArrivalDateTime = arrivalDateTime;
             UpdatedDateTime = DateTime.UtcNow;
         }
+
+#pragma warning disable CS8618
+        private Reservation() { }
+#pragma warning restore CS8618 
     }
 
     public enum ReservationStatus

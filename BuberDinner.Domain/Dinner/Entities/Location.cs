@@ -2,10 +2,10 @@
 {
     public sealed class Location
     {
-        public string Name { get; } 
-        public string Address { get; } 
-        public float Latitude { get; } 
-        public float Longitude { get; }
+        public string Name { get; private set; } 
+        public string Address { get; private set; } 
+        public float Latitude { get; private set; } 
+        public float Longitude { get; private set; }
 
         private Location(
             string name, 
@@ -30,6 +30,5 @@
 #pragma warning disable CS8618
         private Location() { }
 #pragma warning restore CS8618 
-
     }
 }
