@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Guests.Commands.CreateGuestRating;
+using BuberDinner.Application.Guests.Commands.UpdateGuestRating;
 using BuberDinner.Domain.Guest.Entities;
 using FluentAssertions;
 
@@ -10,6 +11,11 @@ namespace BuberDinner.Application.UnitTests.TestUtils.Guests.Extensions
         {
             guestRating.HostId.Should().Be(command.HostId);
             guestRating.DinnerId.Should().Be(command.DinnerId);
+            guestRating.Rating.Should().Be(command.Rating);
+        }
+
+        public static void ValidateUpdatedFrom(this GuestRating guestRating, UpdateGuestRatingCommand command)
+        {
             guestRating.Rating.Should().Be(command.Rating);
         }
     }

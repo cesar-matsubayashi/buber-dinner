@@ -86,6 +86,19 @@ namespace BuberDinner.Domain.Guest
             _guestRatings.Add(guestRating);
         }
 
+        public void UpdateGuestRating(
+            GuestRatingId guestRatingId,
+            Rating rating)
+        {
+            var guestRating = _guestRatings.FirstOrDefault(
+                r => r.Id == guestRatingId);
+
+            if (guestRating is not null)
+            {
+                guestRating.Update(rating);
+            }
+        }
+
         public void SetUpcomingDinnerIds(IEnumerable<DinnerId> dinnerIds)
         {
             _upcomingDinnerIds.Clear();

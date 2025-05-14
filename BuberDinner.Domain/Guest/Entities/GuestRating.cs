@@ -14,7 +14,7 @@ namespace BuberDinner.Domain.Guest.Entities
         public DateTime CreatedDateTime { get; private set; }
         public DateTime UpdatedDateTime { get; private set; }
 
-        public GuestRating(
+        private GuestRating(
             GuestRatingId guestRatingId,
             HostId hostId, 
             DinnerId dinnerId, 
@@ -42,6 +42,11 @@ namespace BuberDinner.Domain.Guest.Entities
                 rating,
                 DateTime.UtcNow,
                 DateTime.UtcNow);
+        }
+
+        public void Update(Rating rating)
+        {
+            Rating = rating;
         }
     }
 }

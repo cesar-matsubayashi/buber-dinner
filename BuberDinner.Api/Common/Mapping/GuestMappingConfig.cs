@@ -2,6 +2,7 @@
 using BuberDinner.Application.Guests.Commands.CreateGuestRating;
 using BuberDinner.Application.Guests.Commands.DeleteGuest;
 using BuberDinner.Application.Guests.Commands.UpdateGuest;
+using BuberDinner.Application.Guests.Commands.UpdateGuestRating;
 using BuberDinner.Application.Guests.Queries.GetGuest;
 using BuberDinner.Contracts.Guests;
 using BuberDinner.Contracts.Guests.GuestRating;
@@ -61,12 +62,6 @@ namespace BuberDinner.Api.Common.Mapping
                 .Map(dest => dest.DinnerId, src => DinnerId.Create(src.Request.DinnerId))
                 .Map(dest => dest.Rating, src => Rating.CreateNew(src.Request.Rating));
 
-            //config.NewConfig<(CreateGuestRatingRequest Request, Guid Id), CreateGuestRatingCommand>()
-            //    .Map(dest => dest.GuestId, src => GuestId.Create(src.Id))
-            //    .Map(dest => dest.HostId, src => HostId.Create(src.Request.HostId))
-            //    .Map(dest => dest.DinnerId, src => DinnerId.Create(src.Request.DinnerId))
-            //    .Map(dest => dest.Rating, src => Rating.CreateNew(src.Request.Rating.Value));
-
             config.NewConfig<(CreateGuestRatingRequest Request, Guid Id), CreateGuestRatingCommand>()
                 .MapWith(src => new CreateGuestRatingCommand(
                     GuestId.Create(src.Id),
@@ -79,6 +74,13 @@ namespace BuberDinner.Api.Common.Mapping
                 .Map(dest => dest.HostId, src => src.HostId.Value)
                 .Map(dest => dest.DinnerId, src => src.DinnerId.Value)
                 .Map(dest => dest.Rating, src => src.Rating.Value);
+
+            config.NewConfig<(UpdateGuestRatingRequest Request, Guid GuestId, Guid GuestRatingId),
+                UpdateGuestRatingCommand>()
+                .MapWith(src => new UpdateGuestRatingCommand(
+                    GuestRatingId.Create(src.GuestRatingId),
+                    GuestId.Create(src.GuestId),
+                    Rating.CreateNew(src.Request.Rating)));
         }
     }
 }
