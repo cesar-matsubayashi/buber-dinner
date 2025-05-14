@@ -15,7 +15,8 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
 
         public async Task DeleteAsync(Guest guest)
         {
-            throw new NotImplementedException();
+            _guests.Remove(guest);
+            await Task.CompletedTask;
         }
 
         public async Task<Guest?> GetAsync(GuestId id)

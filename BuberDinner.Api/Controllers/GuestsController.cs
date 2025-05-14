@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Guests.Commands.CreateGuest;
+using BuberDinner.Application.Guests.Commands.DeleteGuest;
 using BuberDinner.Application.Guests.Commands.UpdateGuest;
 using BuberDinner.Application.Guests.Queries.GetGuest;
 using BuberDinner.Contracts.Guests;
@@ -54,6 +55,18 @@ namespace BuberDinner.Api.Controllers
 
             return getGuestResult.Match(
                 guest => Ok(_mapper.Map<GuestResponse>(guest)),
+                errors => Problem(errors));
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteGuest(
+            Guid id)
+        {
+            var command = _mapper.Map<DeleteGuestCommand>(id);
+            var deleteGuestCommand = await _mediator.Send(command);
+
+            return deleteGuestCommand.Match(
+                _ => NoContent(),
                 errors => Problem(errors));
         }
     }

@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Guests.Commands.CreateGuest;
+using BuberDinner.Application.Guests.Commands.DeleteGuest;
 using BuberDinner.Application.Guests.Commands.UpdateGuest;
 using BuberDinner.Application.Guests.Queries.GetGuest;
 using BuberDinner.Contracts.Guests;
@@ -45,6 +46,9 @@ namespace BuberDinner.Api.Common.Mapping
             config.NewConfig<(UpdateGuestRequest Request, Guid Id), UpdateGuestCommand>()
                 .Map(dest => dest.Id, src => GuestId.Create(src.Id))
                 .Map(dest => dest, src => src.Request);
+
+            config.NewConfig<Guid, DeleteGuestCommand>()
+                .Map(dest => dest.Id, src => GuestId.Create(src));
         }
     }
 }
