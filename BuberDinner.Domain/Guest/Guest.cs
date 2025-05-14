@@ -4,6 +4,7 @@ using BuberDinner.Domain.Common.ValueObjects;
 using BuberDinner.Domain.Dinner.ValueObjects;
 using BuberDinner.Domain.Guest.Entities;
 using BuberDinner.Domain.Guest.ValueObjects;
+using BuberDinner.Domain.Host.ValueObjects;
 using BuberDinner.Domain.MenuReview.ValueObjects;
 using BuberDinner.Domain.User.ValueObjects;
 
@@ -73,6 +74,16 @@ namespace BuberDinner.Domain.Guest
                 AverageRating.CreateNew(),
                 DateTime.UtcNow,
                 DateTime.UtcNow);
+        }
+
+        public void AddGuestRating(
+            HostId hostId,
+            DinnerId dinnerId,
+            Rating rating)
+        {
+            var guestRating = GuestRating.Create(hostId, dinnerId, rating);
+
+            _guestRatings.Add(guestRating);
         }
 
         public void SetUpcomingDinnerIds(IEnumerable<DinnerId> dinnerIds)

@@ -8,11 +8,11 @@ namespace BuberDinner.Domain.Guest.Entities
 {
     public class GuestRating : AggregateRoot<GuestRatingId>
     {
-        public HostId HostId { get; }
-        public DinnerId DinnerId { get; }
-        public Rating Rating { get; }
-        public DateTime CreatedDateTime { get; }
-        public DateTime UpdatedDateTime { get; }
+        public HostId HostId { get; private set; }
+        public DinnerId DinnerId { get; private set; }
+        public Rating Rating { get; private set; }
+        public DateTime CreatedDateTime { get; private set; }
+        public DateTime UpdatedDateTime { get; private set; }
 
         public GuestRating(
             GuestRatingId guestRatingId,
