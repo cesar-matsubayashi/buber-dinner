@@ -10,6 +10,6 @@ namespace BuberDinner.Application.UnitTests.Hosts.TestUtils
                 Constants.Host.FirstName,
                 Constants.Host.LastName,
                 Constants.Host.ProfileImage,
-                Constants.User.Id);
+                Constants.User.Id1);
     }
 }

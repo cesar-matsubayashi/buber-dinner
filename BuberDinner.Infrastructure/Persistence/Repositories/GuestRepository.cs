@@ -20,7 +20,8 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
 
         public async Task<Guest?> GetAsync(GuestId id)
         {
-            throw new NotImplementedException();
+            await Task.CompletedTask;
+            return _guests.FirstOrDefault(g => g.Id == id);
         }
 
         public async Task UpdateAsync(Guest guest)

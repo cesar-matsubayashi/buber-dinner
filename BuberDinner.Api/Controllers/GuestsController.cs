@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Guests.Commands.CreateGuest;
+using BuberDinner.Application.Guests.Queries.GetGuest;
 using BuberDinner.Contracts.Guests;
 using MapsterMapper;
 using MediatR;
@@ -26,6 +27,18 @@ namespace BuberDinner.Api.Controllers
             var createGuestResult = await _mediator.Send(command);
 
             return createGuestResult.Match(
+                guest => Ok(_mapper.Map<GuestResponse>(guest)),
+                errors => Problem(errors));
+        }
+
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetGuest(
+            Guid id)
+        {
+            var query = _mapper.Map<GetGuestQuery>(id);
+            var getGuestResult = await _mediator.Send(query);
+
+            return getGuestResult.Match(
                 guest => Ok(_mapper.Map<GuestResponse>(guest)),
                 errors => Problem(errors));
         }

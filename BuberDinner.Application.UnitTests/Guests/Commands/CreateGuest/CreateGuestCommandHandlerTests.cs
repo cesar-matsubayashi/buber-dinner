@@ -38,7 +38,7 @@ namespace BuberDinner.Application.UnitTests.Guests.Commands.CreateGuest
                     Constants.Guest.FirstName1,
                     Constants.Guest.LastName1,
                     Constants.Guest.ProfileImage1,
-                    Constants.User.Id)
+                    Constants.User.Id1)
             };
         }
     }

@@ -1,7 +1,9 @@
 ﻿using BuberDinner.Application.Guests.Commands.CreateGuest;
+using BuberDinner.Application.Guests.Queries.GetGuest;
 using BuberDinner.Contracts.Guests;
 using BuberDinner.Domain.Guest;
 using BuberDinner.Domain.Guest.Entities;
+using BuberDinner.Domain.Guest.ValueObjects;
 using BuberDinner.Domain.User.ValueObjects;
 using Mapster;
 
@@ -35,6 +37,9 @@ namespace BuberDinner.Api.Common.Mapping
                 .Map(dest => dest.HostId, src => src.HostId.Value)
                 .Map(dest => dest.DinnerId, src => src.DinnerId.Value)
                 .Map(dest => dest.Rating, src => src.Rating.Value);
+
+            config.NewConfig<Guid, GetGuestQuery>()
+                .Map(dest => dest.Id, src => GuestId.Create(src));
         }
     }
 }
