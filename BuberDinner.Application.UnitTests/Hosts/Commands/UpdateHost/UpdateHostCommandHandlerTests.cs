@@ -53,9 +53,9 @@ namespace BuberDinner.Application.UnitTests.Hosts.Commands.UpdateHost
             {
                 new UpdateHostCommand(
                     _hosts[0].Id,
-                    Constants.Host.FirstName,
-                    Constants.Host.LastName,
-                    Constants.Host.ProfileImage)
+                    Constants.Host.FirstName1,
+                    Constants.Host.LastName1,
+                    Constants.Host.ProfileImage1)
             };
         }
     }

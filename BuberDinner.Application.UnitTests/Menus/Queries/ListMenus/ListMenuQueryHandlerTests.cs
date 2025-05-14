@@ -52,7 +52,7 @@ namespace BuberDinner.Application.UnitTests.Menus.Queries.ListMenus
                     items: CreateMenuUtils.CreateItems(itemCount: 3)))
             );
 
-            menus.Add(CreateMenuUtils.CreateMenu(Constants.Host2.Id));
+            menus.Add(CreateMenuUtils.CreateMenu(Constants.Host.Id2));
 
             return menus;
         }

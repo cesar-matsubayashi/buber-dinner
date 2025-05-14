@@ -12,7 +12,7 @@ namespace BuberDinner.Application.UnitTests.Menus.TestUtils
             HostId hostId = null!,
             List<MenuSection>? sections = null) => 
             Menu.Create(
-                hostId is null ? Constants.Host.Id : hostId,
+                hostId is null ? Constants.Host.Id1 : hostId,
                 Constants.Menu.Name,
                 Constants.Menu.Description,
                 sections ?? CreateSections()

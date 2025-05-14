@@ -7,9 +7,9 @@ namespace BuberDinner.Application.UnitTests.Hosts.TestUtils
     {
         public static Host CreateHost() =>
             Host.Create(
-                Constants.Host.FirstName,
-                Constants.Host.LastName,
-                Constants.Host.ProfileImage,
+                Constants.Host.FirstName1,
+                Constants.Host.LastName1,
+                Constants.Host.ProfileImage1,
                 Constants.User.Id1);
     }
 }

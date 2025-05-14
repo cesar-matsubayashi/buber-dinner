@@ -13,38 +13,38 @@ namespace BuberDinner.Application.UnitTests.Dinners.TestUtils
             DateTime? start = null,
             UpdatePriceCommand? price = null)
         {
-            DateTime startDateTime = start ?? Constants.Dinner.StartDateTime.Update();
+            DateTime startDateTime = start ?? Constants.Dinner.StartDateTime1.Update();
 
             return new UpdateDinnerCommand(
                 id,
-                Constants.Dinner.Name.Update(),
-                Constants.Dinner.Description.Update(),
+                Constants.Dinner.Name1.Update(),
+                Constants.Dinner.Description1.Update(),
                 startDateTime,
                 Constants.Dinner.EndDateTimeFromStartDateTime(startDateTime),
                 Constants.Dinner.StartedDateTimeFromStartDateTime(startDateTime),
                 Constants.Dinner.EndedDateTimeFromStartDateTime(startDateTime),
                 DinnerStatus.Ended,
-                Constants.Dinner.IsPublic,
-                Constants.Dinner.MaxGuests.Update(),
+                Constants.Dinner.IsPublic1,
+                Constants.Dinner.MaxGuests1.Update(),
                 price ?? UpdatePriceCommand(),
                 Constants.Menu.Id,
-                Constants.Dinner.ImageUrl.Update(),
+                Constants.Dinner.ImageUrl1.Update(),
                 UpdateLocationCommand());
         }
 
         public static UpdatePriceCommand UpdatePriceCommand(
-            decimal price = Constants.Dinner.PriceAmount)
+            decimal price = Constants.Dinner.PriceAmount1)
         {
             return new UpdatePriceCommand(
                 price,
-                Constants.Dinner.PriceCurrency);
+                Constants.Dinner.PriceCurrency1);
         }
 
         public static UpdateLocationCommand UpdateLocationCommand() =>
             new UpdateLocationCommand(
-                Constants.Dinner.LocationName.Update(),
-                Constants.Dinner.LocationAddress.Update(),
-                Constants.Dinner.LocationLatitude.Update(),
-                Constants.Dinner.LocationLongitude.Update());
+                Constants.Dinner.LocationName1.Update(),
+                Constants.Dinner.LocationAddress1.Update(),
+                Constants.Dinner.LocationLatitude1.Update(),
+                Constants.Dinner.LocationLongitude1.Update());
     }
 }

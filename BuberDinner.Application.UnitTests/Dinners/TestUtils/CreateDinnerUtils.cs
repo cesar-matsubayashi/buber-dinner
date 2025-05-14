@@ -12,19 +12,19 @@ namespace BuberDinner.Application.UnitTests.Dinners.TestUtils
             Price? price = null,
             bool reservation = false)
         {
-            DateTime startDateTime = start ?? Constants.Dinner.StartDateTime;
+            DateTime startDateTime = start ?? Constants.Dinner.StartDateTime1;
             
             var dinner = Dinner.Create(
-                Constants.Host.Id,
-                Constants.Dinner.Name,
-                Constants.Dinner.Description,
+                Constants.Host.Id1,
+                Constants.Dinner.Name1,
+                Constants.Dinner.Description1,
                 startDateTime,
                 Constants.Dinner.EndDateTimeFromStartDateTime(startDateTime),
-                Constants.Dinner.IsPublic,
-                Constants.Dinner.MaxGuests,
+                Constants.Dinner.IsPublic1,
+                Constants.Dinner.MaxGuests1,
                 price ?? CreatePrice(),
                 Constants.Menu.Id,
-                Constants.Dinner.ImageUrl,
+                Constants.Dinner.ImageUrl1,
                 CreateLocation());
 
             if (reservation)
@@ -44,18 +44,18 @@ namespace BuberDinner.Application.UnitTests.Dinners.TestUtils
         }
 
         public static Price CreatePrice(
-            decimal price = Constants.Dinner.PriceAmount)
+            decimal price = Constants.Dinner.PriceAmount1)
         {
             return Price.Create(
                 price,
-                Constants.Dinner.PriceCurrency);
+                Constants.Dinner.PriceCurrency1);
         }
 
         public static Location CreateLocation() =>
             Location.Create(
-                Constants.Dinner.LocationName,
-                Constants.Dinner.LocationAddress,
-                Constants.Dinner.LocationLatitude,
-                Constants.Dinner.LocationLongitude);
+                Constants.Dinner.LocationName1,
+                Constants.Dinner.LocationAddress1,
+                Constants.Dinner.LocationLatitude1,
+                Constants.Dinner.LocationLongitude1);
     }
 }

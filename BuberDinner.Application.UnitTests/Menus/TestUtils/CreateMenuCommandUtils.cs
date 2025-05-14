@@ -8,7 +8,7 @@ namespace BuberDinner.Application.UnitTests.Menus.TestUtils
         public static CreateMenuCommand CreateCommand(
             List<CreateMenuSectionCommand>? sections = null) =>
             new CreateMenuCommand(
-                Constants.Host.Id.Value,
+                Constants.Host.Id1.Value,
                 Constants.Menu.Name,
                 Constants.Menu.Description,
                 sections ?? CreateSectionsCommand()

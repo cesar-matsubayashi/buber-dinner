@@ -35,9 +35,9 @@ namespace BuberDinner.Application.UnitTests.Hosts.Commands.CreateHost
             yield return new[]
             {
                 new CreateHostCommand(
-                    Constants.Host.FirstName,
-                    Constants.Host.LastName,
-                    Constants.Host.ProfileImage,
+                    Constants.Host.FirstName1,
+                    Constants.Host.LastName1,
+                    Constants.Host.ProfileImage1,
                     Constants.User.Id1)
             };
         }
