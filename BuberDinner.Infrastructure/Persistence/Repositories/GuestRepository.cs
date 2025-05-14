@@ -26,7 +26,14 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
 
         public async Task UpdateAsync(Guest guest)
         {
-            throw new NotImplementedException();
+            var guestToRemove = _guests.Find(g => g.Id == guest.Id);
+
+            if (guestToRemove is not null)
+            {
+                _guests.Remove(guestToRemove);
+                _guests.Add(guest);
+            }
+
         }
     }
 }

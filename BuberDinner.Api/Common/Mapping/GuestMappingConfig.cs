@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Guests.Commands.CreateGuest;
+using BuberDinner.Application.Guests.Commands.UpdateGuest;
 using BuberDinner.Application.Guests.Queries.GetGuest;
 using BuberDinner.Contracts.Guests;
 using BuberDinner.Domain.Guest;
@@ -40,6 +41,10 @@ namespace BuberDinner.Api.Common.Mapping
 
             config.NewConfig<Guid, GetGuestQuery>()
                 .Map(dest => dest.Id, src => GuestId.Create(src));
+
+            config.NewConfig<(UpdateGuestRequest Request, Guid Id), UpdateGuestCommand>()
+                .Map(dest => dest.Id, src => GuestId.Create(src.Id))
+                .Map(dest => dest, src => src.Request);
         }
     }
 }

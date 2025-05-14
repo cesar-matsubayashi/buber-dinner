@@ -74,5 +74,46 @@ namespace BuberDinner.Domain.Guest
                 DateTime.UtcNow,
                 DateTime.UtcNow);
         }
+
+        public void SetUpcomingDinnerIds(IEnumerable<DinnerId> dinnerIds)
+        {
+            _upcomingDinnerIds.Clear();
+            _upcomingDinnerIds.AddRange(dinnerIds);
+        }
+
+        public void SetPastDinnerIds(IEnumerable<DinnerId> dinnerIds)
+        {
+            _pastDinnerIds.Clear();
+            _pastDinnerIds.AddRange(dinnerIds);
+        }
+
+        public void SetPendingDinnerIds(IEnumerable<DinnerId> dinnerIds)
+        {
+            _pendingDinnerIds.Clear();
+            _pendingDinnerIds.AddRange(dinnerIds);
+        }
+
+        public void SetBillIds(IEnumerable<BillId> billIds)
+        {
+            _billIds.Clear();
+            _billIds.AddRange(billIds);
+        }
+
+        public void SetMenuReviewIds(IEnumerable<MenuReviewId> menuReviewIds)
+        {
+            _menuReviewIds.Clear();
+            _menuReviewIds.AddRange(menuReviewIds);
+        }
+
+        public void Update(
+            string firstName,
+            string lastName,
+            string profileImage)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            ProfileImage = profileImage;
+            UpdatedDateTime = DateTime.UtcNow;
+        }
     }
 }
