@@ -139,5 +139,9 @@ namespace BuberDinner.Domain.Guest
             ProfileImage = profileImage;
             UpdatedDateTime = DateTime.UtcNow;
         }
+
+#pragma warning disable CS8618
+        private Guest() { }
+#pragma warning restore CS8618 
     }
 }

@@ -48,5 +48,9 @@ namespace BuberDinner.Domain.Guest.Entities
         {
             Rating = rating;
         }
+
+#pragma warning disable CS8618
+        private GuestRating() { }
+#pragma warning restore CS8618 
     }
 }

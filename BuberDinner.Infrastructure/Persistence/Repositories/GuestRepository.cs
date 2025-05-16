@@ -6,35 +6,34 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
 {
     public class GuestRepository : IGuestRepository
     {
-        private static List<Guest> _guests = new();
+        private readonly BuberDinnerDbContext _dbContext;
+
+        public GuestRepository(BuberDinnerDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public async Task AddAsync(Guest guest)
         {
-            _guests.Add(guest);
-            await Task.CompletedTask; 
+            await _dbContext.AddAsync(guest);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Guest guest)
         {
-            _guests.Remove(guest);
-            await Task.CompletedTask;
+            _dbContext.Remove(guest);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<Guest?> GetAsync(GuestId id)
         {
-            await Task.CompletedTask;
-            return _guests.FirstOrDefault(g => g.Id == id);
+            return await _dbContext.Guests.FindAsync(id);
         }
 
         public async Task UpdateAsync(Guest guest)
         {
-            var guestToRemove = _guests.Find(g => g.Id == guest.Id);
-
-            if (guestToRemove is not null)
-            {
-                _guests.Remove(guestToRemove);
-                _guests.Add(guest);
-            }
-
+            _dbContext.Update(guest);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
