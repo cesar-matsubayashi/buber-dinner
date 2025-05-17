@@ -1,0 +1,38 @@
+﻿using BuberDinner.Application.Common.Interfaces.Persistence;
+using BuberDinner.Domain.Bill;
+using BuberDinner.Domain.Bill.ValueObjects;
+using BuberDinner.Domain.Guest.ValueObjects;
+
+namespace BuberDinner.Infrastructure.Persistence.Repositories
+{
+    public class BillRepository : IBillRepository
+    {
+        private static List<Bill> _bills = new();
+
+        public async Task AddAsync(Bill dinner)
+        {
+            _bills.Add(dinner);
+            await Task.CompletedTask;
+        }
+
+        public async Task DeleteAsync(Bill dinner)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<Bill>> GetAllByGuestIdAsync(GuestId guestId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Bill?> GetAsync(BillId id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task UpdateAsync(Bill dinner)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

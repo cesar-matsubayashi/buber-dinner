@@ -1,0 +1,16 @@
+@host = https://localhost:7041
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCdWJlckRpbm5lci5Eb21haW4uVXNlci5WYWx1ZU9iamVjdHMuVXNlcklkIiwiZ2l2ZW5fbmFtZSI6IlRpZmZhbnkiLCJmYW1pbHlfbmFtZSI6IkRvZSIsImp0aSI6ImQxN2YzNjY2LTgxYjUtNGQ4Mi1hMTQwLTExYzU0MWI5Y2VjMCIsImV4cCI6MTc0ODA1NzYzMiwiaXNzIjoiQnViZXJEaW5uZXIiLCJhdWQiOiJCdWJlckRpbm5lciJ9.VTa7nD8Iovl7uYlplCxFAmcOuW1vRTHLpjgVm4luaBk
+
+POST {{host}}/bills
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "dinnerId": "05205549-be11-4e8e-862c-205736a4850f",
+    "guestId": "b2b3ff04-e9e5-49a4-b750-75d5304c8afd",
+    "hostId": "f8ffa059-27ec-4656-a627-1ff371ea42e3",
+    "price": {
+        "amount": 10.99,
+        "currency": "USD"
+    }
+}
