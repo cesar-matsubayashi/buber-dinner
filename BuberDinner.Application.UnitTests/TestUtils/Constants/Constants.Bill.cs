@@ -1,5 +1,4 @@
 ﻿using BuberDinner.Domain.Bill.ValueObjects;
-using BuberDinner.Domain.Host.ValueObjects;
 
 namespace BuberDinner.Application.UnitTests.TestUtils.Constants
 {
@@ -15,6 +14,15 @@ namespace BuberDinner.Application.UnitTests.TestUtils.Constants
 
             public static readonly BillId Id3 = BillId.Create(
                 Guid.Parse("1a68edd3-9a71-4f77-8a8a-0ad174775005"));
+
+            public const decimal PriceAmount1 = 10.99m;
+            public const string PriceCurrency1 = "USD";
+            
+            public const decimal PriceAmount2 = 10.99m;
+            public const string PriceCurrency2 = "USD";
+            
+            public const decimal PriceAmount3 = 10.99m;
+            public const string PriceCurrency3 = "USD";
         }
     }
 }
