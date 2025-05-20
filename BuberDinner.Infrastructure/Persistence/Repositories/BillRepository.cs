@@ -27,7 +27,7 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
 
         public async Task<Bill?> GetAsync(BillId id)
         {
-            throw new NotImplementedException();
+            return _bills.FirstOrDefault(b => b.Id == id);
         }
 
         public async Task UpdateAsync(Bill dinner)

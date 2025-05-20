@@ -1,6 +1,8 @@
 ﻿using BuberDinner.Application.Bills.Commands.CreateBill;
+using BuberDinner.Application.Bills.Queries.GetBill;
 using BuberDinner.Contracts.Bills;
 using BuberDinner.Domain.Bill;
+using BuberDinner.Domain.Bill.ValueObjects;
 using BuberDinner.Domain.Common.ValueObjects;
 using BuberDinner.Domain.Dinner.ValueObjects;
 using BuberDinner.Domain.Guest.ValueObjects;
@@ -27,6 +29,9 @@ namespace BuberDinner.Api.Common.Mapping
                 .Map(dest => dest.HostId, src => src.HostId.Value);
 
             config.NewConfig<Price, PriceResponse>();
+
+            config.NewConfig<Guid, GetBillQuery>()
+                .Map(dest => dest.Id, src => BillId.Create(src));
         }
     }
 }

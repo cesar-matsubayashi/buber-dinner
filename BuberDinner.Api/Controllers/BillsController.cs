@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Bills.Commands.CreateBill;
+using BuberDinner.Application.Bills.Queries.GetBill;
 using BuberDinner.Contracts.Bills;
 using MapsterMapper;
 using MediatR;
@@ -26,6 +27,18 @@ namespace BuberDinner.Api.Controllers
             var createBillCommand = await _mediator.Send(command);
 
             return createBillCommand.Match(
+                bill => Ok(_mapper.Map<BillsResponse>(bill)),
+                errors => Problem(errors));
+        }
+
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetBill(
+            Guid id)
+        {
+            var query = _mapper.Map<GetBillQuery>(id);
+            var getBillQuery = await _mediator.Send(query);
+
+            return getBillQuery.Match(
                 bill => Ok(_mapper.Map<BillsResponse>(bill)),
                 errors => Problem(errors));
         }
