@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Bills.Commands.CreateBill;
+using BuberDinner.Application.Bills.Commands.UpdateBill;
 using BuberDinner.Domain.Bill;
 using FluentAssertions;
 
@@ -11,6 +12,12 @@ namespace BuberDinner.Application.UnitTests.TestUtils.Bills.Extensions
             bill.GuestId.Should().Be(command.GuestId);
             bill.DinnerId.Should().Be(command.DinnerId);
             bill.HostId.Should().Be(command.HostId);
+            bill.Price.Amount.Should().Be(command.Price.Amount);
+            bill.Price.Currency.Should().Be(command.Price.Currency);
+        }
+
+        public static void ValidateUpdatedFrom(this Bill bill, UpdateBillCommand command)
+        {
             bill.Price.Amount.Should().Be(command.Price.Amount);
             bill.Price.Currency.Should().Be(command.Price.Currency);
         }

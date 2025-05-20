@@ -1,5 +1,6 @@
 ﻿using BuberDinner.Application.Bills.Commands.CreateBill;
 using BuberDinner.Application.Bills.Commands.DeleteBill;
+using BuberDinner.Application.Bills.Commands.UpdateBill;
 using BuberDinner.Application.Bills.Queries.GetBill;
 using BuberDinner.Application.UnitTests.Bills.Queries.GetBillsByGuestId;
 using BuberDinner.Contracts.Bills;
@@ -66,6 +67,19 @@ namespace BuberDinner.Api.Controllers
 
             return getBillCommand.Match(
                 _ => NoContent(),
+                errors => Problem(errors));
+        }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UpdateBill(
+            UpdateBillRequest request,
+            Guid id)
+        {
+            var command = _mapper.Map<UpdateBillCommand>((request, id));
+            var updateBillCommand = await _mediator.Send(command);
+
+            return updateBillCommand.Match(
+                bill => Ok(_mapper.Map<BillsResponse>(bill)),
                 errors => Problem(errors));
         }
     }

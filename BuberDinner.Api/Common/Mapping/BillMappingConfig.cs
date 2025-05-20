@@ -1,5 +1,6 @@
 ﻿using BuberDinner.Application.Bills.Commands.CreateBill;
 using BuberDinner.Application.Bills.Commands.DeleteBill;
+using BuberDinner.Application.Bills.Commands.UpdateBill;
 using BuberDinner.Application.Bills.Queries.GetBill;
 using BuberDinner.Application.UnitTests.Bills.Queries.GetBillsByGuestId;
 using BuberDinner.Contracts.Bills;
@@ -40,6 +41,12 @@ namespace BuberDinner.Api.Common.Mapping
 
             config.NewConfig<Guid, DeleteBillCommand>()
                 .Map(dest => dest.Id, src => BillId.Create(src));
+
+            config.NewConfig<(UpdateBillRequest Request, Guid Id), UpdateBillCommand>()
+                .Map(dest => dest.Id, src => BillId.Create(src.Id))
+                .Map(dest => dest, src => src.Request);
+
+            config.NewConfig<UpdatePriceRequest, UpdatePriceCommand>();
         }
     }
 }

@@ -32,7 +32,8 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
 
         public async Task UpdateAsync(Bill bill)
         {
-            throw new NotImplementedException();
+            _bills.Remove(bill);
+            _bills.Add(bill);
         }
     }
 }
