@@ -22,7 +22,7 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
 
         public async Task<List<Bill>> GetAllByGuestIdAsync(GuestId guestId)
         {
-            throw new NotImplementedException();
+            return _bills.Where(b => b.GuestId == guestId).ToList();
         }
 
         public async Task<Bill?> GetAsync(BillId id)

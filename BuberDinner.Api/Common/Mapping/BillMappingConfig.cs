@@ -1,5 +1,6 @@
 ﻿using BuberDinner.Application.Bills.Commands.CreateBill;
 using BuberDinner.Application.Bills.Queries.GetBill;
+using BuberDinner.Application.UnitTests.Bills.Queries.GetBillsByGuestId;
 using BuberDinner.Contracts.Bills;
 using BuberDinner.Domain.Bill;
 using BuberDinner.Domain.Bill.ValueObjects;
@@ -32,6 +33,9 @@ namespace BuberDinner.Api.Common.Mapping
 
             config.NewConfig<Guid, GetBillQuery>()
                 .Map(dest => dest.Id, src => BillId.Create(src));
+
+            config.NewConfig<Guid, ListBillsByGuestIdQuery>()
+                .Map(dest => dest.GuestId, src => GuestId.Create(src));
         }
     }
 }

@@ -28,6 +28,15 @@ namespace BuberDinner.Application.UnitTests.Bills.TestUtils
             return bills;
         }
 
+        public static Bill CreateBill(int index)
+        {
+            return Bill.Create(
+                GetDinnerId(index),
+                GetGuestId(index),
+                GetHostId(index),
+                GetPrice(index));
+        }
+
         private static DinnerId GetDinnerId(int index) =>
             index switch
             {
