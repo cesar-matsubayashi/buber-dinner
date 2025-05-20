@@ -23,7 +23,7 @@ namespace BuberDinner.Application.UnitTests.Dinners.TestUtils
                 Constants.Dinner.IsPublic1,
                 Constants.Dinner.MaxGuests1,
                 price ?? CreatePrice(),
-                Constants.Menu.Id,
+                Constants.Menu.Id1,
                 Constants.Dinner.ImageUrl1,
                 CreateLocation());
 

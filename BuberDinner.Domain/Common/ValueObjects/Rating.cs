@@ -17,6 +17,8 @@ namespace BuberDinner.Domain.Common.ValueObjects
             return new Rating(value);
         }
 
+        public Rating() { }
+
         public override IEnumerable<object> GetEqualityComponents()
         {
             yield return Value;

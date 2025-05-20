@@ -27,7 +27,7 @@ namespace BuberDinner.Application.UnitTests.Dinners.TestUtils
                 Constants.Dinner.IsPublic1,
                 Constants.Dinner.MaxGuests1.Update(),
                 price ?? UpdatePriceCommand(),
-                Constants.Menu.Id,
+                Constants.Menu.Id1,
                 Constants.Dinner.ImageUrl1.Update(),
                 UpdateLocationCommand());
         }

@@ -43,6 +43,7 @@ namespace BuberDinner.Infrastructure
             services.AddScoped<IDinnerRepository, DinnerRepository>();  
             services.AddScoped<IGuestRepository, GuestRepository>();  
             services.AddScoped<IBillRepository, BillRepository>();  
+            services.AddScoped<IMenuReviewRepository, MenuReviewRepository>();  
 
             return services;
         }
