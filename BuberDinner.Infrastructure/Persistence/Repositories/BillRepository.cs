@@ -9,15 +9,15 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
     {
         private static List<Bill> _bills = new();
 
-        public async Task AddAsync(Bill dinner)
+        public async Task AddAsync(Bill bill)
         {
-            _bills.Add(dinner);
+            _bills.Add(bill);
             await Task.CompletedTask;
         }
 
-        public async Task DeleteAsync(Bill dinner)
+        public async Task DeleteAsync(Bill bill)
         {
-            throw new NotImplementedException();
+            _bills.Remove(bill);
         }
 
         public async Task<List<Bill>> GetAllByGuestIdAsync(GuestId guestId)
@@ -30,7 +30,7 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
             return _bills.FirstOrDefault(b => b.Id == id);
         }
 
-        public async Task UpdateAsync(Bill dinner)
+        public async Task UpdateAsync(Bill bill)
         {
             throw new NotImplementedException();
         }

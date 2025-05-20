@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Bills.Commands.CreateBill;
+using BuberDinner.Application.Bills.Commands.DeleteBill;
 using BuberDinner.Application.Bills.Queries.GetBill;
 using BuberDinner.Application.UnitTests.Bills.Queries.GetBillsByGuestId;
 using BuberDinner.Contracts.Bills;
@@ -53,6 +54,18 @@ namespace BuberDinner.Api.Controllers
 
             return listBillsQueryByGuestId.Match(
                 bills => Ok(_mapper.Map<List<BillsResponse>>(bills)),
+                errors => Problem(errors));
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteBill(
+            Guid id)
+        {
+            var command = _mapper.Map<DeleteBillCommand>(id);
+            var getBillCommand = await _mediator.Send(command);
+
+            return getBillCommand.Match(
+                _ => NoContent(),
                 errors => Problem(errors));
         }
     }

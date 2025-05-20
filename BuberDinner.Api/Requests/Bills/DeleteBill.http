@@ -1,0 +1,7 @@
+@host = https://localhost:7041
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCdWJlckRpbm5lci5Eb21haW4uVXNlci5WYWx1ZU9iamVjdHMuVXNlcklkIiwiZ2l2ZW5fbmFtZSI6IlRpZmZhbnkiLCJmYW1pbHlfbmFtZSI6IkRvZSIsImp0aSI6ImQxN2YzNjY2LTgxYjUtNGQ4Mi1hMTQwLTExYzU0MWI5Y2VjMCIsImV4cCI6MTc0ODA1NzYzMiwiaXNzIjoiQnViZXJEaW5uZXIiLCJhdWQiOiJCdWJlckRpbm5lciJ9.VTa7nD8Iovl7uYlplCxFAmcOuW1vRTHLpjgVm4luaBk
+@billId = 2dcd7d51-5f1b-422d-845b-6b05f6716755
+
+DELETE {{host}}/bills/{{billId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
