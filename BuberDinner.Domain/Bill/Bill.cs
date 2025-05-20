@@ -54,5 +54,9 @@ namespace BuberDinner.Domain.Bill
         {
             Price = price;
         }
+
+#pragma warning disable CS8618
+        private Bill() { }
+#pragma warning restore CS8618 
     }
 }

@@ -2,38 +2,47 @@
 using BuberDinner.Domain.Bill;
 using BuberDinner.Domain.Bill.ValueObjects;
 using BuberDinner.Domain.Guest.ValueObjects;
+using Microsoft.EntityFrameworkCore;
 
 namespace BuberDinner.Infrastructure.Persistence.Repositories
 {
     public class BillRepository : IBillRepository
     {
-        private static List<Bill> _bills = new();
+        private readonly BuberDinnerDbContext _dbContext;
+
+        public BillRepository(BuberDinnerDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         public async Task AddAsync(Bill bill)
         {
-            _bills.Add(bill);
-            await Task.CompletedTask;
+            await _dbContext.AddAsync(bill);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Bill bill)
         {
-            _bills.Remove(bill);
+            _dbContext.Remove(bill);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<List<Bill>> GetAllByGuestIdAsync(GuestId guestId)
         {
-            return _bills.Where(b => b.GuestId == guestId).ToList();
+            return await _dbContext.Bills
+                .Where(b => b.GuestId == guestId)
+                .ToListAsync();
         }
 
         public async Task<Bill?> GetAsync(BillId id)
         {
-            return _bills.FirstOrDefault(b => b.Id == id);
+            return await _dbContext.Bills.FindAsync(id);
         }
 
         public async Task UpdateAsync(Bill bill)
         {
-            _bills.Remove(bill);
-            _bills.Add(bill);
+            _dbContext.Update(bill);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
