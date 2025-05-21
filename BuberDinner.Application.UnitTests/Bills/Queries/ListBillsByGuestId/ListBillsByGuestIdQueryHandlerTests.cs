@@ -7,13 +7,13 @@ using Moq;
 
 namespace BuberDinner.Application.UnitTests.Bills.Queries.ListBillsByGuestId
 {
-    public class ListBillsByGuestIdQueryHandlerTests
+    public class ListBillsByMenuIdQueryHandlerTests
     {
         private readonly ListBillsByGuestIdQueryHandler _handler;
         private readonly Mock<IBillRepository> _mockRepository;
         private static readonly List<Bill> _bills = new();
 
-        public ListBillsByGuestIdQueryHandlerTests()
+        public ListBillsByMenuIdQueryHandlerTests()
         {
             _mockRepository = new Mock<IBillRepository>();
             _handler = new ListBillsByGuestIdQueryHandler(_mockRepository.Object);

@@ -26,9 +26,10 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
             return _menuReviews.Where(m => m.GuestId == guestId).ToList();
         }
 
-        public Task<List<MenuReview>> GetAllIdsByMenuId(MenuId menuId)
+        public async Task<List<MenuReview>> GetAllByMenuIdAsync(MenuId menuId)
         {
-            throw new NotImplementedException();
+            await Task.CompletedTask;
+            return _menuReviews.Where(m => m.MenuId == menuId).ToList();
         }
 
         public async Task<MenuReview?> GetAsync(MenuReviewId id)

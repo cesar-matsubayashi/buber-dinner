@@ -11,10 +11,10 @@ namespace BuberDinner.Application.UnitTests.TestUtils.Constants
                 Guid.Parse("93ce3d28-31c7-409b-bb61-2e1f9e7f1ee9"));
 
             public static readonly MenuId Id2 = MenuId.Create(
-                Guid.Parse("93ce3d28-31c7-409b-bb61-2e1f9e7f1ee9"));
+                Guid.Parse("1b491015-97b0-4d7e-acb2-1ad61f96a8b8"));
 
             public static readonly MenuId Id3 = MenuId.Create(
-                Guid.Parse("93ce3d28-31c7-409b-bb61-2e1f9e7f1ee9"));
+                Guid.Parse("a7aca384-9745-49f3-95ab-f5f42caafed1"));
 
             public const string Name = "Menu Name";
             public const string Description = "Menu Description";

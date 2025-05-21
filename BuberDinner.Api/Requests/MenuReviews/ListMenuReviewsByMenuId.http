@@ -1,0 +1,8 @@
+@host = https://localhost:7041
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCdWJlckRpbm5lci5Eb21haW4uVXNlci5WYWx1ZU9iamVjdHMuVXNlcklkIiwiZ2l2ZW5fbmFtZSI6IlRpZmZhbnkiLCJmYW1pbHlfbmFtZSI6IkRvZSIsImp0aSI6ImQxN2YzNjY2LTgxYjUtNGQ4Mi1hMTQwLTExYzU0MWI5Y2VjMCIsImV4cCI6MTc0ODA1NzYzMiwiaXNzIjoiQnViZXJEaW5uZXIiLCJhdWQiOiJCdWJlckRpbm5lciJ9.VTa7nD8Iovl7uYlplCxFAmcOuW1vRTHLpjgVm4luaBk
+@hostId = df4e5cdf-5a37-4389-b43b-193c8cfb4c90
+@menuId = ba23e3df-3349-4482-93a7-88c5c9917962
+
+GET {{host}}/hosts/{{hostId}}/menus/{{menuId}}/menureviews
+Content-Type: application/json
+Authorization: Bearer {{token}}
