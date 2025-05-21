@@ -37,9 +37,10 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
             return _menuReviews.First(m => m.Id == id);
         }
 
-        public Task UpdateAsync(MenuReview menuReview)
+        public async Task UpdateAsync(MenuReview menuReview)
         {
-            throw new NotImplementedException();
+            _menuReviews.Remove(menuReview);
+            _menuReviews.Add(menuReview);
         }
     }
 }

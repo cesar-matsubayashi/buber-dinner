@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.MenuReviews.Commands.CreateMenuReview;
+using BuberDinner.Application.MenuReviews.Commands.UpdateMenuReview;
 using BuberDinner.Domain.MenuReview;
 using FluentAssertions;
 
@@ -14,6 +15,12 @@ namespace BuberDinner.Application.UnitTests.TestUtils.MenuReviews.Extensions
             menuReview.MenuId.Should().Be(command.MenuId);
             menuReview.GuestId.Should().Be(command.GuestId);
             menuReview.DinnerId.Should().Be(command.DinnerId);
+        }
+
+        public static void ValidateUpdatedFrom(this MenuReview menuReview, UpdateMenuReviewCommand command)
+        {
+            menuReview.Rating.Should().Be(command.Rating);
+            menuReview.Comment.Should().Be(command.Comment);
         }
     }
 }
