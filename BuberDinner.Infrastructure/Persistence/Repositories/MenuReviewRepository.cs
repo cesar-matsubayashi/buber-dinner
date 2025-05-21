@@ -30,9 +30,9 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<MenuReview?> GetAsync(MenuReviewId id)
+        public async Task<MenuReview?> GetAsync(MenuReviewId id)
         {
-            throw new NotImplementedException();
+            return _menuReviews.First(m => m.Id == id);
         }
 
         public Task UpdateAsync(MenuReview menuReview)

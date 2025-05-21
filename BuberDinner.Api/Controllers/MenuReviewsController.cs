@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.MenuReviews.Commands.CreateMenuReview;
+using BuberDinner.Application.MenuReviews.Queries.GetMenuReview;
 using BuberDinner.Contracts.MenuReview;
 using MapsterMapper;
 using MediatR;
@@ -28,6 +29,18 @@ namespace BuberDinner.Api.Controllers
             var createMenuReviewCommand = await _mediator.Send(command);
 
             return createMenuReviewCommand.Match(
+                menuReview => Ok(_mapper.Map<MenuReviewResponse>(menuReview)),
+                errors => Problem(errors));
+        }
+
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetMenuReview(
+            Guid Id)
+        {
+            var query = _mapper.Map<GetMenuReviewQuery>(Id);
+            var getMenuReviewQuery = await _mediator.Send(query);
+
+            return getMenuReviewQuery.Match(
                 menuReview => Ok(_mapper.Map<MenuReviewResponse>(menuReview)),
                 errors => Problem(errors));
         }

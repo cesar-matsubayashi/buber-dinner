@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.MenuReviews.Commands.CreateMenuReview;
+using BuberDinner.Application.MenuReviews.Queries.GetMenuReview;
 using BuberDinner.Contracts.MenuReview;
 using BuberDinner.Domain.Common.ValueObjects;
 using BuberDinner.Domain.Dinner.ValueObjects;
@@ -6,6 +7,7 @@ using BuberDinner.Domain.Guest.ValueObjects;
 using BuberDinner.Domain.Host.ValueObjects;
 using BuberDinner.Domain.Menu.ValueObjects;
 using BuberDinner.Domain.MenuReview;
+using BuberDinner.Domain.MenuReview.ValueObjects;
 using Mapster;
 
 namespace BuberDinner.Api.Common.Mapping
@@ -32,8 +34,9 @@ namespace BuberDinner.Api.Common.Mapping
                 .Map(dest => dest.MenuId, src => src.MenuId.Value)
                 .Map(dest => dest.GuestId, src => src.GuestId.Value)
                 .Map(dest => dest.DinnerId, src => src.DinnerId.Value);
-                
-                
+
+            config.NewConfig<Guid, GetMenuReviewQuery>()
+                .Map(dest => dest.Id, src => MenuReviewId.Create(src));
         }
     }
 }
