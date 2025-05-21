@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.MenuReviews.Commands.CreateMenuReview;
+using BuberDinner.Application.MenuReviews.Commands.DeleteMenuReview;
 using BuberDinner.Application.MenuReviews.Queries.GetMenuReview;
 using BuberDinner.Application.MenuReviews.Queries.ListMenuReviewsByGuestId;
 using BuberDinner.Application.MenuReviews.Queries.ListMenuReviewsByMenuId;
@@ -68,6 +69,18 @@ namespace BuberDinner.Api.Controllers
 
             return listMenuReviewsByMenuIdQuery.Match(
                 menuReviews => Ok(_mapper.Map<List<MenuReviewResponse>>(menuReviews)),
+                errors => Problem(errors));
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteMenuReview(
+            Guid id)
+        {
+            var command = _mapper.Map<DeleteMenuReviewCommand>(id);
+            var deleteMenuReviewCommand = await _mediator.Send(command);
+
+            return deleteMenuReviewCommand.Match(
+                _ => NoContent(),
                 errors => Problem(errors));
         }
     }

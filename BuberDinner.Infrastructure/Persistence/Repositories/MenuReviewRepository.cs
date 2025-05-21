@@ -15,9 +15,9 @@ namespace BuberDinner.Infrastructure.Persistence.Repositories
             _menuReviews.Add(menuReview);
         }
 
-        public Task DeleteAsync(MenuReview menuReview)
+        public async Task DeleteAsync(MenuReview menuReview)
         {
-            throw new NotImplementedException();
+            _menuReviews.Remove(menuReview);
         }
 
         public async Task<List<MenuReview>> GetAllByGuestIdAsync(GuestId guestId)
