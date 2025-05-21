@@ -69,5 +69,9 @@ namespace BuberDinner.Domain.MenuReview
             Comment = comment;
             UpdatedDateTime = DateTime.UtcNow;
         }
+
+#pragma warning disable CS8618
+        private MenuReview() { }
+#pragma warning restore CS8618 
     }
 }

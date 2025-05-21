@@ -4,6 +4,7 @@ using BuberDinner.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuberDinner.Infrastructure.Migrations
 {
     [DbContext(typeof(BuberDinnerDbContext))]
-    partial class BuberDinnerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250521184101_MenuReviewCreate")]
+    partial class MenuReviewCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -260,18 +263,18 @@ namespace BuberDinner.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("GuestId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("DinnerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid>("DinnerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("GuestId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("HostId")
                         .HasColumnType("uniqueidentifier");
@@ -282,7 +285,7 @@ namespace BuberDinner.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedDateTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id", "GuestId", "DinnerId");
 
                     b.HasIndex("DinnerId");
 
@@ -766,15 +769,21 @@ namespace BuberDinner.Infrastructure.Migrations
                             b1.Property<Guid>("MenuReviewId")
                                 .HasColumnType("uniqueidentifier");
 
+                            b1.Property<Guid>("MenuReviewGuestId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<Guid>("MenuReviewDinnerId")
+                                .HasColumnType("uniqueidentifier");
+
                             b1.Property<float>("Value")
                                 .HasColumnType("real");
 
-                            b1.HasKey("MenuReviewId");
+                            b1.HasKey("MenuReviewId", "MenuReviewGuestId", "MenuReviewDinnerId");
 
                             b1.ToTable("MenuReviews");
 
                             b1.WithOwner()
-                                .HasForeignKey("MenuReviewId");
+                                .HasForeignKey("MenuReviewId", "MenuReviewGuestId", "MenuReviewDinnerId");
                         });
 
                     b.Navigation("Rating")

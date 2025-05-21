@@ -5,6 +5,7 @@ using BuberDinner.Domain.Entities;
 using BuberDinner.Domain.Guest;
 using BuberDinner.Domain.Host;
 using BuberDinner.Domain.Menu;
+using BuberDinner.Domain.MenuReview;
 using BuberDinner.Infrastructure.Persistence.Interceptors;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,7 @@ namespace BuberDinner.Infrastructure.Persistence
         public DbSet<Dinner> Dinners { get; set; } = null!;
         public DbSet<Guest> Guests { get; set; } = null!;
         public DbSet<Bill> Bills { get; set; } = null!;
+        public DbSet<MenuReview> MenuReviews { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
