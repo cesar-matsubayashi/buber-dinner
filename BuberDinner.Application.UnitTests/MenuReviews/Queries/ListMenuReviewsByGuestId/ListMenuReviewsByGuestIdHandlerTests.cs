@@ -24,13 +24,16 @@ namespace BuberDinner.Application.UnitTests.MenuReviews.Queries.ListMenuReviewsB
         public async Task HandlerListMenuReviewsByGuestIdQuery_WhenMenuReviewExists_ShouldReturnMenuReviews(
             ListMenuReviewsByGuestIdQuery listMenuReviewsByGuestId)
         {
+            var menuReviewsByGuestId = _menuReviews.Where(
+                m => m.GuestId == listMenuReviewsByGuestId.GuestId)
+                .ToList();
             _mockRepository.Setup(r => r.GetAllByGuestIdAsync(listMenuReviewsByGuestId.GuestId))
-                .ReturnsAsync(_menuReviews);
+                .ReturnsAsync(menuReviewsByGuestId);
 
             var result = await _handler.Handle(listMenuReviewsByGuestId, default);
 
             result.IsError.Should().BeFalse();
-            result.Value.Should().BeEquivalentTo(_menuReviews);
+            result.Value.Should().BeEquivalentTo(menuReviewsByGuestId);
             _mockRepository.Verify(m => m.GetAllByGuestIdAsync(listMenuReviewsByGuestId.GuestId), Times.Once);
         }
 
