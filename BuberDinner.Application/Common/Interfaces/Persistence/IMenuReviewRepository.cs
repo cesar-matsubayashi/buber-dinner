@@ -11,7 +11,7 @@ namespace BuberDinner.Application.Common.Interfaces.Persistence
         Task DeleteAsync(MenuReview menuReview);
         Task<MenuReview?> GetAsync(MenuReviewId id);
         Task<List<MenuReview>> GetAllIdsByMenuId(MenuId menuId);
-        Task<List<MenuReview>> GetAllIdsByGuestId(GuestId menuId);
+        Task<List<MenuReview>> GetAllByGuestIdAsync(GuestId guestId);
         Task UpdateAsync(MenuReview menuReview);
     }
 }
