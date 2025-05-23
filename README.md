@@ -106,9 +106,10 @@ dotnet run --project BuberDinner.Api
 
 ## Future Improvements
 
-- ✅ Add **domain events** to capture side effects
-- ✅ Extend **FluentValidation** on commands/requests/queries
-- ✅ Add `user-secrets` for database connection security
-- ✅ Write more **unit tests**
-- ✅ Add **integration** and **end-to-end tests**
-- ✅ Add **API**, **domain**, and **infrastructure** layer tests
+- Add **domain events** to capture side effects
+- Extend **FluentValidation** on commands/requests/queries
+- Add database DockerFile
+- Add `user-secrets` for database connection security
+- Write more **unit tests**
+- Add **integration** and **end-to-end tests**
+- Add **API**, **domain**, and **infrastructure** layer tests
